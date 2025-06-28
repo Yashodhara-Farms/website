@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yashodhara Organic Farms</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fdf6e3;
+  margin: 0;
+  padding: 2rem;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  max-width: 360px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.product-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #1e392a;
+  text-align: center;
+}
+
+.product-details p {
+  margin: 0.5rem 0;
+  color: #3e4c40;
+  text-align: center;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #2e2e2e;
+}
+
+.whatsapp-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe5d;
+}
+
+  </style>
+</head>
+<body class="bg-[#fdf6e3] text-green-900 font-serif">
+
+
+    <!-- Hero Section -->
+<section class="relative w-full bg-[#fdf6e3]">
+  <div class="w-full h-[70vh] overflow-hidden relative">
+    <img
+      src="./img/background-banner-4.png"
+      alt="Farm Banner"
+      class="absolute top-0 left-0 w-full h-full object-contain"
+    />
+  </div>
+  <div class="absolute top-0 left-0 w-full h-[70vh] flex flex-col items-center justify-center z-10 bg-[#fdf6e3]/25 text-center">
+    <img src="./img/logos/trimmerd_logo.png" alt="Yashodhara Logo" class="w-32 md:w-80 mb-4" />
+  </div>
+</section>
+
+<!-- About Us Section -->
+<section class="bg-[#fdf6e3] py-16 px-6 md:px-20 text-center">
+  <h2 class="text-3xl md:text-4xl font-bold text-green-900 mb-6">About Us</h2>
+
+  <div class="flex flex-col md:flex-row justify-center items-center gap-6 max-w-4xl mx-auto">
+    <!-- Flower -->
+    <div class="w-20 md:w-28 flex-shrink-0">
+      <img src="./img/flower-illustration.png" alt="Floral Icon" class="w-full" />
+    </div>
+
+    <!-- Text -->
+    <p class="text-lg md:text-xl text-green-800 text-left">
+      We are an organic farm rooted in the belief that sacred purity flows from healthy soil.
+      Practicing traditional, cow-based, and chemical-free methods in the foothills of Uttarakhand,
+      our produce is more than food—it’s nourishment for the soul.
+    </p>
+  </div>
+</section>
+
+  <!-- Our Products Section -->
+<section class="bg-[#fdf6e3] py-16 px-4 md:px-12 lg:px-20 products-section">
+  <h2 class="text-3xl md:text-4xl font-bold text-green-900 text-center mb-12">Our Products</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 products-grid">
+    
+    <!-- Ghee Card -->
+    <div class="bg-[#fdf6e3] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+      <img src="./img/organic-ghee-jar.png" alt="Organic Ghee" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+      <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">A2 Bilona Organic Ghee</h3>
+      <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Sacred Gold for Mind, Body & Soul</p>
+      <p class="text-green-800 text-sm mb-3">
+        Hand-churned from indigenous cow milk using the traditional bilona method. Pure and sacred.
+      </p>
+      <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹950 / 500ml</p>
+      <div class="mt-auto flex flex-col gap-2 items-center">
+        <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Ghee"
+           target="_blank"
+           class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+          📦 Order on WhatsApp
+        </a>
+        <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+          Know More
+        </button>
+      </div>
+    </div>
+
+    <!-- Jaggery Card -->
+    <div class="bg-[#fdf6e3] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+      <img src="./img/organic-jaggery.png" alt="Organic Jaggery" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+      <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Organic Jaggery</h3>
+      <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Wholesome Sweetness from Sugarcane</p>
+      <p class="text-green-800 text-sm mb-3">
+        Sun-dried and chemical-free jaggery full of minerals and nutrients.
+      </p>
+      <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹160 / 500g</p>
+      <div class="mt-auto flex flex-col gap-2 items-center">
+        <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Jaggery"
+           target="_blank"
+           class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+          📦 Order on WhatsApp
+        </a>
+        <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+          Know More
+        </button>
+      </div>
+    </div>
+
+    <!-- Honey Card -->
+    <div class="bg-[#fdf6e3] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+      <img src="./img/organic-honey.png" alt="Organic Honey" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+      <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Organic Honey</h3>
+      <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Nature’s Nectar, Untouched & Unfiltered</p>
+      <p class="text-green-800 text-sm mb-3">
+        Wild-harvested raw honey from Himalayan flora. Unheated. Unfiltered.
+      </p>
+      <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹720 / 500ml</p>
+      <div class="mt-auto flex flex-col gap-2 items-center">
+        <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Honey"
+           target="_blank"
+           class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+          📦 Order on WhatsApp
+        </a>
+        <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+          Know More
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Farming Practices -->
+  <section class="py-16 px-6 md:px-16">
+    <h2 class="text-3xl font-bold mb-8 text-center">Farming Practices</h2>
+    <div class="flex flex-col md:flex-row justify-center gap-12 text-center">
+      <div>
+        <img src="compost-icon.png" alt="Composting" class="mx-auto w-20 h-20 mb-4" />
+        <h3 class="text-xl font-semibold">Composting</h3>
+      </div>
+      <div>
+        <img src="cow-based-icon.png" alt="Cow-Based" class="mx-auto w-20 h-20 mb-4" />
+        <h3 class="text-xl font-semibold">Cow-Based</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog/Newsletter -->
+  <section class="py-16 px-6 md:px-16 bg-[#f3efe2] text-center">
+    <h2 class="text-3xl font-bold mb-6">Blog</h2>
+    <div class="flex flex-col gap-4 max-w-xl mx-auto">
+      <input type="text" placeholder="Your email for updates" class="p-3 rounded-md border border-green-800" />
+      <button class="bg-green-800 text-white py-3 rounded-md hover:bg-green-700">Subscribe</button>
+    </div>
+    <p class="mt-4 text-sm">Explore traditional methods, recipes, and wellness tips from the farm.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm py-8 text-green-800">
+    © 2025 Yashodhara Organic Farms — Uttarakhand, India
+  </footer>
+
+</body>
+</html>

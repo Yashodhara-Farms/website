@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashodhara Farms - Vedic Purity from the Himalayas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Lora and Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+    <!-- Feather Icons for simple icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Custom styles to incorporate brand colors and fonts */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FEFBF6; /* A slightly warmer, more premium cream */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
+        /* Color palette derived from the logo */
+        .text-brand-orange { color: #D97706; } /* Saffron/Orange */
+        .bg-brand-orange { background-color: #D97706; }
+        .hover\:bg-brand-orange-dark:hover { background-color: #B45309; }
+        .border-brand-orange { border-color: #D97706; }
+        .text-brand-green { color: #166534; } /* Deep green */
+        .bg-brand-green { background-color: #166534; }
+        .text-brand-brown { color: #5D4037; } /* Earthy brown for text */
+        .bg-brand-cream { background-color: #FFF7ED; } /* A warm, light cream for sections */
+        
+        /* NEW Hero Section background image */
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1615937691168-98447a13d7a8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+        }
+        .logo-img {
+            max-width: 200px; /* Slightly adjusted for better balance */
+            height: auto;
+        }
+    </style>
+</head>
+<body class="text-brand-brown">
+
+    <!-- Header -->
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center">
+                <img src="./img/logo.jpeg" alt="Yashodhara Farms Logo" class="logo-img">
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8 items-center font-medium">
+                <a href="#about" class="hover:text-brand-orange transition duration-300">Our Story</a>
+                <a href="#why-us" class="hover:text-brand-orange transition duration-300">Why Choose Us</a>
+                <a href="#products" class="hover:text-brand-orange transition duration-300">Products</a>
+                <a href="#contact" class="bg-brand-orange text-white py-2 px-5 rounded-full hover:bg-brand-orange-dark transition duration-300 shadow-md">Order Now</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-brand-brown focus:outline-none">
+                    <i data-feather="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="#about" class="block py-3 px-6 text-base hover:bg-brand-cream">Our Story</a>
+            <a href="#why-us" class="block py-3 px-6 text-base hover:bg-brand-cream">Why Choose Us</a>
+            <a href="#products" class="block py-3 px-6 text-base hover:bg-brand-cream">Products</a>
+            <a href="#contact" class="block py-3 px-6 text-base hover:bg-brand-cream">Order Now</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section text-white min-h-[90vh] flex items-center justify-center relative">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative p-10 rounded-lg text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Taste the Purity of the Himalayas</h1>
+                <p class="text-lg md:text-2xl mb-8 font-light">Ancient Wisdom, Modern Wellness. Good for you, good for Mother Earth—that's our Vedic promise.</p>
+                <a href="#products" class="bg-brand-orange text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-brand-orange-dark transition duration-300 transform hover:scale-105">Shop Our Collection</a>
+            </div>
+        </section>
+
+        <!-- NEW Trust Seals Section -->
+        <section class="bg-brand-cream py-12">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="flex items-center justify-center flex-col sm:flex-row">
+                        <i data-feather="shield" class="w-10 h-10 text-brand-green mb-2 sm:mb-0 sm:mr-3"></i>
+                        <span class="font-semibold text-brand-brown">100% Chemical-Free</span>
+                    </div>
+                    <div class="flex items-center justify-center flex-col sm:flex-row">
+                        <i data-feather="sun" class="w-10 h-10 text-brand-green mb-2 sm:mb-0 sm:mr-3"></i>
+                        <span class="font-semibold text-brand-brown">Vedic Traditional Methods</span>
+                    </div>
+                    <div class="flex items-center justify-center flex-col sm:flex-row">
+                        <i data-feather="map-pin" class="w-10 h-10 text-brand-green mb-2 sm:mb-0 sm:mr-3"></i>
+                        <span class="font-semibold text-brand-brown">Sourced from Uttarakhand</span>
+                    </div>
+                    <div class="flex items-center justify-center flex-col sm:flex-row">
+                        <i data-feather="package" class="w-10 h-10 text-brand-green mb-2 sm:mb-0 sm:mr-3"></i>
+                        <span class="font-semibold text-brand-brown">Direct from Farm</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us / Our Story Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="md:flex md:items-center md:space-x-12">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <img src="https://images.unsplash.com/photo-1600548512356-690e7a469a47?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Uttarakhand Farm" class="rounded-lg shadow-xl"
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/FFF7ED/5D4037?text=Yashodhara+Farms';">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-4xl font-bold text-brand-orange mb-4">Our Story: A Journey of Purity</h2>
+                        <p class="mb-4 text-lg">Yashodhara Farms was born from a simple belief: pure food is the foundation of a healthy life. Nestled in the pristine foothills of Uttarakhand, we are a family-run initiative dedicated to reviving the timeless traditions of Vedic agriculture.</p>
+                        <p class="mb-4 text-lg">For the conscious urban family seeking refuge from a hectic world, we offer more than just organic products; we offer a promise of authenticity. We are inspired by the wisdom of our ancestors and the untouched beauty of the Himalayas, ensuring that every product reaching your home is crafted with care, integrity, and a deep respect for nature.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW "Why Choose Us" Section -->
+        <section id="why-us" class="py-20 bg-brand-cream">
+            <div class="container mx-auto px-6">
+                 <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-4xl font-bold text-brand-orange mb-4">Why Yashodhara Farms?</h2>
+                    <p class="text-lg mb-12">In a market full of claims, we stand for trust and transparency. We go beyond labels to bring you food that is truly nourishing.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1598965674773-461c363573c0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gir Cow" class="rounded-lg shadow-xl" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FFF7ED/5D4037?text=Authentic+A2+Cows';">
+                    </div>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <i data-feather="check-circle" class="w-8 h-8 text-brand-orange flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1">The A2 Cow Advantage</h3>
+                                <p>Our Ghee is exclusively from the milk of Gir cows, cherished in Ayurveda for its nutritious and easily digestible A2 protein.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <i data-feather="check-circle" class="w-8 h-8 text-brand-orange flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1">Commitment to Tradition</h3>
+                                <p>We don't take shortcuts. From the slow, manual Bilona churning of Ghee to the patient cold-pressing of oils, we honour the methods that preserve nutrients.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <i data-feather="check-circle" class="w-8 h-8 text-brand-orange flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1">Complete Transparency</h3>
+                                <p>We believe you have the right to know what's in your food. We invite your questions and are proud of our process. With us, what you see is what you get.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-brand-orange mb-12">Nature's Finest Offerings</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1: Ghee -->
+                    <div class="bg-brand-cream rounded-lg shadow-lg overflow-hidden flex flex-col group relative">
+                        <div class="absolute top-3 right-3 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-full z-10">Bestseller</div>
+                        <img src="https://images.unsplash.com/photo-1606127193766-347a2a7a4a4b?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="A2 Organic Ghee" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FFF7ED/5D4037?text=A2+Ghee';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-brand-green mb-2">A2 Organic Ghee</h3>
+                            <p class="mb-4 flex-grow">Hand-churned from the nutritious A2 milk of our free-grazing Gir cows using the traditional Bilona method.</p>
+                            <a href="https://wa.me/919999999999?text=I'm%20interested%20in%20your%20A2%20Organic%20Ghee" target="_blank" class="mt-auto block w-full text-center bg-brand-orange text-white py-2 px-4 rounded-full hover:bg-brand-orange-dark transition duration-300">Buy on WhatsApp</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 2: Jaggery -->
+                    <div class="bg-brand-cream rounded-lg shadow-lg overflow-hidden flex flex-col group">
+                        <img src="https://images.unsplash.com/photo-1616470341393-8f0a2110c431?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Organic Jaggery" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FFF7ED/5D4037?text=Jaggery';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-brand-green mb-2">Organic Jaggery</h3>
+                            <p class="mb-4 flex-grow">A natural, mineral-rich sweetener free from chemical processing. The perfect wholesome alternative to refined sugar.</p>
+                             <a href="https://wa.me/919999999999?text=I'm%20interested%20in%20your%20Organic%20Jaggery" target="_blank" class="mt-auto block w-full text-center bg-brand-orange text-white py-2 px-4 rounded-full hover:bg-brand-orange-dark transition duration-300">Buy on WhatsApp</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 3: Jaggery Powder -->
+                    <div class="bg-brand-cream rounded-lg shadow-lg overflow-hidden flex flex-col group">
+                        <img src="https://images.unsplash.com/photo-1598982339599-808383a1529d?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Organic Jaggery Powder" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FFF7ED/5D4037?text=Jaggery+Powder';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-brand-green mb-2">Organic Jaggery Powder</h3>
+                            <p class="mb-4 flex-grow">All the goodness of our jaggery in a convenient powdered form, perfect for your daily tea, coffee, and desserts.</p>
+                             <a href="https://wa.me/919999999999?text=I'm%20interested%20in%20your%20Organic%20Jaggery%20Powder" target="_blank" class="mt-auto block w-full text-center bg-brand-orange text-white py-2 px-4 rounded-full hover:bg-brand-orange-dark transition duration-300">Buy on WhatsApp</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 4: Mustard Oil -->
+                    <div class="bg-brand-cream rounded-lg shadow-lg overflow-hidden flex flex-col group">
+                        <img src="https://images.unsplash.com/photo-1596399621332-9a8d8e063a03?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Organic Mustard Oil" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FFF7ED/5D4037?text=Mustard+Oil';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-brand-green mb-2">Organic Mustard Oil</h3>
+                            <p class="mb-4 flex-grow">Cold-pressed from the finest mustard seeds, retaining its natural pungency, aroma, and nutritional value.</p>
+                             <a href="https://wa.me/919999999999?text=I'm%20interested%20in%20your%20Organic%20Mustard%20Oil" target="_blank" class="mt-auto block w-full text-center bg-brand-orange text-white py-2 px-4 rounded-full hover:bg-brand-orange-dark transition duration-300">Buy on WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="py-20 bg-brand-cream">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-brand-orange mb-12">What Our Customers Say</h2>
+                <div class="max-w-3xl mx-auto text-center p-8 bg-white rounded-lg shadow-xl">
+                    <p class="text-xl italic mb-6">"Finally, an organic brand I can trust completely. The ghee tastes just like what my grandmother used to make. It's evident that there are no shortcuts here. Yashodhara Farms is now a staple in our kitchen."</p>
+                    <p class="font-bold text-lg">- Mrs. Aditya, Delhi NCR</p>
+                    <p class="text-sm">Health-Conscious Professional</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-brand-orange mb-4">Get In Touch</h2>
+                    <p class="max-w-2xl mx-auto mb-8">Have a question or want to place a bulk order? We'd love to hear from you.</p>
+                </div>
+                <div class="max-w-lg mx-auto bg-brand-cream p-8 rounded-lg shadow-lg">
+                    <form action="#" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block mb-2 font-medium">Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-orange">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block mb-2 font-medium">Email</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-orange">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block mb-2 font-medium">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-orange"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-brand-orange text-white py-3 px-8 rounded-full font-semibold hover:bg-brand-orange-dark transition duration-300">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-center mt-12">
+                     <p class="mb-4 text-lg">For faster orders, connect with us directly:</p>
+                     <a href="https://wa.me/919999999999?text=Hello%20Yashodhara%20Farms!" target="_blank" class="inline-flex items-center bg-green-500 text-white py-3 px-6 rounded-full font-semibold hover:bg-green-600 transition duration-300 shadow-md">
+                        <i data-feather="message-circle" class="inline-block mr-2"></i> Order on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-brown text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+             <a href="#home" class="flex items-center justify-center mb-6">
+                <img src="https://storage.googleapis.com/gemini-prod/images/07d89063-4a16-430c-8f19-335324fa548f" alt="Yashodhara Farms Logo" class="logo-img bg-white p-2 rounded-lg">
+            </a>
+            <p class="mb-6 max-w-2xl mx-auto">Purity from the Himalayas, Rooted in Vedic Tradition.</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://www.instagram.com/twobrothersorganicfarms/" target="_blank" class="p-2 rounded-full hover:bg-brand-orange transition-colors"><i data-feather="instagram"></i></a>
+                <a href="https://www.facebook.com/TwoBrothersOrganicFarmsIndia" target="_blank" class="p-2 rounded-full hover:bg-brand-orange transition-colors"><i data-feather="facebook"></i></a>
+                <a href="https://www.youtube.com/c/TwoBrothersOrganicFarms" target="_blank" class="p-2 rounded-full hover:bg-brand-orange transition-colors"><i data-feather="youtube"></i></a>
+                <a href="https://twitter.com/TwoBrothersOF" target="_blank" class="p-2 rounded-full hover:bg-brand-orange transition-colors"><i data-feather="twitter"></i></a>
+            </div>
+            <p class="text-sm text-gray-400">&copy; 2025 Yashodhara Farms. All Rights Reserved. Crafted with care.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Feather Icons initialization
+        feather.replace();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                 mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
