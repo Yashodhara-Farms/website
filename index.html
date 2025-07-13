@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yashodhara Organic Farms</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/./favicon.svg" />
+  <link rel="shortcut icon" href="/favicon/./favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/./apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/./site.webmanifest" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -75,25 +76,86 @@
 
   </style>
 </head>
-<body class="bg-[#fdf6e3] text-green-900 font-serif">
+<body class="bg-[#fdf6e3] text-green-900 font-serif pt-0">
+  <!-- Include Partials Loader -->
+<script>
+  // Load an HTML partial into a container
+  function loadPartial(url, containerId) {
+    fetch(url)
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById(containerId).innerHTML = data;
+        const script = document.createElement('script');
+        script.src = './js/hero.js';
+        document.body.appendChild(script);
+      });
+  }
+</script>
+<!-- ✅ Sticky Header: Yashodhara Organic Farms -->
+<header class="sticky top-0 z-50 bg-[#fdf6e3] shadow-sm text-[#1e392a] font-[Montserrat]">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    <!-- ☰ Mobile Menu Icon -->
+    <button id="mobile-menu-btn" class="block md:hidden text-2xl focus:outline-none">
+      ☰
+    </button>
+
+    <!-- ✅ Logo Block (center-aligned) -->
+    <div class="flex flex-col items-center leading-none mx-auto md:mx-0">
+      <div class="text-[28px] font-extrabold tracking-tight uppercase">
+        YASHODHARA
+      </div>
+      <div class="text-[12px] font-semibold tracking-[0.2em] uppercase mt-[2px]">
+        ORGANIC FARMS<span class="align-super text-[9px]">™</span>
+      </div>
+    </div>
+
+    <!-- Empty Spacer for balance -->
+    <div class="w-[24px] md:hidden"></div>
+
+    <!-- 🖥️ Desktop Nav -->
+    <nav class="hidden md:block">
+      <ul class="flex gap-4 text-lg text-green-800 font-normal">
+        <li><a href="#hero" class="hover:text-green-600 transition">Home</a></li>
+        <li><a href="#about-us" class="hover:text-green-600 transition">About Us</a></li>
+        <li><a href="#products" class="hover:text-green-600 transition">Products</a></li>
+        <li><a href="#farming-practices" class="hover:text-green-600 transition">Practices</a></li>
+        <li><a href="#blog" class="hover:text-green-600 transition">Blog</a></li>
+        <li><a href="#contact" class="hover:text-green-600 transition">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- 📱 Mobile Navigation -->
+  <nav id="mobile-nav" class="md:hidden hidden px-4 pb-4 font-normal">
+    <ul class="flex flex-col gap-3 text-lg text-green-800">
+      <li><a href="#hero" class="hover:text-green-600 transition">Home</a></li>
+      <li><a href="#about-us" class="hover:text-green-600 transition">About Us</a></li>
+      <li><a href="#products" class="hover:text-green-600 transition">Products</a></li>
+      <li><a href="#farming-practices" class="hover:text-green-600 transition">Practices</a></li>
+      <li><a href="#blog" class="hover:text-green-600 transition">Blog</a></li>
+      <li><a href="#contact" class="hover:text-green-600 transition">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Toggle Script -->
+<script>
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-nav').classList.toggle('hidden');
+  });
+</script>
 
 
-    <!-- Hero Section -->
-<section class="relative w-full bg-[#fdf6e3]">
-  <div class="w-full h-[70vh] overflow-hidden relative">
-    <img
-      src="./img/background-banner-4.png"
-      alt="Farm Banner"
-      class="absolute top-0 left-0 w-full h-full object-contain"
-    />
-  </div>
-  <div class="absolute top-0 left-0 w-full h-[70vh] flex flex-col items-center justify-center z-10 bg-[#fdf6e3]/25 text-center">
-    <img src="./img/logos/typrographical_border.png" alt="Yashodhara Logo" class="w-32 md:w-80 mb-4" />
-  </div>
-</section>
+ <div id="hero-placeholder"></div>
+
+<script>
+  loadPartial('hero.html', 'hero-placeholder');
+</script>
+
 
 <!-- About Us Section -->
-<section class="bg-[#fdf6e3] py-16 px-6 md:px-20 text-center">
+<section id="about-us" class="bg-[#fdf6e3] py-16 px-6 md:px-20 text-center">
   <h2 class="text-3xl md:text-4xl font-bold text-green-900 mb-6">About Us</h2>
 
   <div class="flex flex-col md:flex-row justify-center items-center gap-6 max-w-4xl mx-auto">
@@ -112,7 +174,7 @@
 </section>
 
   <!-- Our Products Section -->
-<section class="bg-[#f3e3c2] py-16 px-4 md:px-12 lg:px-20 products-section">
+<section id="products" class="bg-[#f3e3c2] py-16 px-4 md:px-12 lg:px-20 products-section">
   <h2 class="text-3xl md:text-4xl font-bold text-green-900 text-center mb-12">Our Products</h2>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 products-grid">
@@ -185,7 +247,7 @@
 
 
   <!-- Farming Practices Section -->
-<section class="py-16 px-6 md:px-16 bg-[#fdf6e3] text-green-900">
+<section id="farming-practices" class="py-16 px-6 md:px-16 bg-[#fdf6e3] text-green-900">
   <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Our Farming Practices</h2>
   <div class="max-w-4xl mx-auto text-lg md:text-xl text-green-800 space-y-6">
     <p>
@@ -223,7 +285,7 @@
 </section>
 
   <!-- Blog/Newsletter -->
-  <section class="py-16 px-6 md:px-16 bg-[#f3efe2] text-center">
+  <section id="blog" class="py-16 px-6 md:px-16 bg-[#f3efe2] text-center">
     <h2 class="text-3xl font-bold mb-6">Blog</h2>
     <div class="flex flex-col gap-4 max-w-xl mx-auto">
       <input type="text" placeholder="Your email for updates" class="p-3 rounded-md border border-green-800" />
@@ -236,6 +298,7 @@
   <footer class="text-center text-sm py-8 text-green-800">
     © 2025 Yashodhara Organic Farms — Uttarakhand, India
   </footer>
+
 
 </body>
 </html>
