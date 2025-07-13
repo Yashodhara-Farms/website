@@ -1,0 +1,48 @@
+<!-- hero.html -->
+<section class="relative overflow-hidden">
+  <!-- Slides Wrapper -->
+  <div id="carousel-slides" class="flex transition-transform duration-700 ease-in-out w-full">
+    
+    <!-- Slide 1: Your Hero -->
+    <div class="w-full flex-shrink-0">
+      <section class="relative w-full bg-[#fdf6e3]">
+  <div class="w-full h-[70vh] overflow-hidden relative">
+    <img
+      src="./img/background-banner-4.png"
+      alt="Farm Banner"
+      class="absolute top-0 left-0 w-full h-full object-contain"
+    />
+  </div>
+  <div class="absolute top-0 left-0 w-full h-[70vh] flex flex-col items-center justify-center z-10 bg-[#fdf6e3]/25 text-center">
+    <img src="./img/logos/typrographical_border.png" alt="Yashodhara Logo" class="w-32 md:w-80 mb-4" />
+  </div>
+</section>
+
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="w-full flex-shrink-0">
+      <div class="h-[80vh] bg-green-100 flex justify-center items-center text-green-900 text-2xl font-semibold">
+        Slide 2 - Add your content here
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="w-full flex-shrink-0">
+      <div class="h-[80vh] bg-green-200 flex justify-center items-center text-green-900 text-2xl font-semibold">
+        Slide 3 - Add your content here
+      </div>
+    </div>
+  </div>
+
+  <!-- Prev / Next Buttons -->
+  <button id="prev" ></button>
+  <button id="next" ></button>
+
+  <!-- Dots -->
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2" id="carousel-dots">
+    <button class="w-3 h-3 bg-green-800 rounded-full opacity-70" data-index="0"></button>
+    <button class="w-3 h-3 bg-green-800 rounded-full opacity-30" data-index="1"></button>
+    <button class="w-3 h-3 bg-green-800 rounded-full opacity-30" data-index="2"></button>
+  </div>
+</section>
