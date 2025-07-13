@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashodhara: Interactive Marketing Strategy</title>
+    <!-- Chosen Palette: Golden Harvest -->
+    <!-- Application Structure Plan: The SPA is structured thematically to guide the user from the "why" (market opportunity) to the "how" (strategy and timeline). It starts with a dashboard of key market data, builds trust by showcasing the authentic 'Bilona' process, introduces the target 'personas', uses an interactive tabbed interface to detail the RACE strategic framework, and concludes with an actionable timeline and a link to the project management board. This non-linear, thematic structure makes the dense report content more digestible and engaging than a simple linear document, encouraging exploration and better retention of key strategic pillars. -->
+    <!-- Visualization & Content Choices: Market projections use Chart.js line charts to visualize trends. Persona data is in scannable cards. The RACE framework is simplified into interactive tabs, with key tactics visualized using bar and donut charts to compare priorities (e.g., keyword focus). The Bilona process and implementation plan are represented as clear flowcharts/timelines using structured HTML/CSS and Unicode icons, which is more intuitive than text. This approach ensures clarity and engagement without relying on SVG or Mermaid JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdf6e3;
+            color: #44403C;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+            max-width: 500px;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #92400E, #B45309);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border: 1px solid #FDE68A;
+        }
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+        .process-line {
+            height: 3px;
+            background: linear-gradient(to right, #FBBF24, #FDE68A);
+            flex-grow: 1;
+            margin: 0 1rem;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-button.active {
+            border-bottom-color: #D97706;
+            color: #92400E;
+        }
+        .logo-primary {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #1e392a;
+            text-transform: capitalize;
+            font-size: 2rem;
+            line-height: 1;
+        }
+        .logo-secondary {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #1e392a;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        @media (min-width: 768px) {
+            .logo-primary {
+                font-size: 2.5rem;
+            }
+            .logo-secondary {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="text-center py-12 px-4 bg-white shadow-md">
+        <div class="mb-4">
+            <div class="logo-primary">Yashodhara</div>
+            <div class="logo-secondary">ORGANIC FARMS</div>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black gradient-text leading-tight">A Blueprint for Growth</h1>
+        <p class="mt-4 text-lg text-stone-600 max-w-3xl mx-auto">An interactive guide to our marketing strategy, translating market opportunities into actionable steps for brand leadership.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="opportunity" class="my-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-900">The Market Opportunity</h2>
+                <p class="mt-2 text-stone-600 max-w-3xl mx-auto">This section presents the compelling quantitative data that underpins our strategy. The interactive charts below illustrate the significant growth projected for our key markets.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <div class="stat-card lg:col-span-2">
+                    <h3 class="text-xl font-bold text-amber-800">A2 Ghee Market Projection (in ₹ Crores)</h3>
+                    <p class="text-stone-500 mb-4 text-sm">A surge driven by health-conscious consumers.</p>
+                    <div class="chart-container">
+                        <canvas id="gheeMarketChart"></canvas>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-bold text-amber-800">The Conscious Consumer</h3>
+                    <p class="text-stone-500 mb-4 text-sm">A rapidly expanding target segment.</p>
+                    <div class="flex items-center justify-center space-x-4 my-8">
+                         <span class="text-6xl">📈</span>
+                         <div>
+                            <p class="text-5xl font-extrabold text-amber-700">176M</p>
+                            <p class="text-stone-600">Health-Conscious Consumers by 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-stone-500 text-xs">A 63% increase from 108 million in 2020, signaling a massive shift in consumer priorities that directly benefits our brand.</p>
+                </div>
+                <div class="stat-card lg:col-span-3">
+                    <h3 class="text-xl font-bold text-amber-800">Packaged Jaggery Market Growth (in ₹ Crores)</h3>
+                    <p class="text-stone-500 mb-4 text-sm">Strong, steady growth as consumers seek healthier sugar alternatives.</p>
+                    <div class="chart-container">
+                        <canvas id="jaggeryMarketChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="my-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-900">Our Commitment to Purity</h2>
+                <p class="mt-2 text-stone-600 max-w-3xl mx-auto">At the heart of our brand is an unwavering commitment to traditional methods. This diagram illustrates the authentic 'Bilona' process for our A2 Ghee, our core differentiator.</p>
+            </div>
+            <div class="stat-card max-w-5xl mx-auto p-8">
+                <h3 class="text-2xl font-bold text-center text-amber-800 mb-8">The Traditional Bilona Method</h3>
+                <div class="flex items-center justify-between">
+                    <div class="process-step"><div class="text-5xl mb-2">🐄</div><h4 class="font-bold">1. Source</h4><p class="text-sm text-stone-500">Pure A2 milk from grass-fed desi cows.</p></div>
+                    <div class="process-line"></div>
+                    <div class="process-step"><div class="text-5xl mb-2">🥣</div><h4 class="font-bold">2. Curd</h4><p class="text-sm text-stone-500">Milk is naturally set into whole curd.</p></div>
+                    <div class="process-line"></div>
+                    <div class="process-step"><div class="text-5xl mb-2">🔄</div><h4 class="font-bold">3. Churn</h4><p class="text-sm text-stone-500">Curd is slowly churned to extract butter.</p></div>
+                    <div class="process-line"></div>
+                    <div class="process-step"><div class="text-5xl mb-2">🔥</div><h4 class="font-bold">4. Simmer</h4><p class="text-sm text-stone-500">Butter is gently heated to clarify.</p></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="personas" class="my-16">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-900">Understanding Our Audience</h2>
+                <p class="mt-2 text-stone-600 max-w-3xl mx-auto">To connect effectively, we must deeply understand who we are talking to. Here are the three core customer personas that represent our ideal audience.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="stat-card text-center transform hover:scale-105 transition-transform duration-300"><div class="text-6xl mb-4">🧘‍♀️</div><h3 class="text-xl font-bold text-amber-900">The Urban Wellness Enthusiast</h3><p class="text-stone-500 mt-2">Ages 25-39. Seeks authentic, premium products for personal health optimization. Values clean living and is highly active online.</p></div>
+                <div class="stat-card text-center transform hover:scale-105 transition-transform duration-300"><div class="text-6xl mb-4">👨‍👩‍👧</div><h3 class="text-xl font-bold text-amber-900">The Health-Conscious Parent</h3><p class="text-stone-500 mt-2">Ages 30-45. Prioritizes family well-being and purity. Motivated to provide safe, chemical-free nutrition for her children. Trusts certifications.</p></div>
+                <div class="stat-card text-center transform hover:scale-105 transition-transform duration-300"><div class="text-6xl mb-4">🌿</div><h3 class="text-xl font-bold text-amber-900">The Traditionalist</h3><p class="text-stone-500 mt-2">Ages 40+. Deeply respects Ayurveda and tradition. Values authentic methods over price and seeks products that uphold cultural heritage.</p></div>
+            </div>
+        </section>
+
+        <section id="strategy" class="my-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-900">Our Blueprint for Action: The RACE Framework</h2>
+                <p class="mt-2 text-stone-600 max-w-3xl mx-auto">This element breaks down our marketing plan. Click each tab to explore the objectives and key tactics for each stage of the customer journey, from initial reach to long-term engagement.</p>
+            </div>
+            <div class="stat-card max-w-5xl mx-auto">
+                <div class="flex justify-center border-b border-stone-200 mb-6"><button class="tab-button active py-3 px-6 font-semibold text-stone-500" onclick="openTab(event, 'Reach')">Reach</button><button class="tab-button py-3 px-6 font-semibold text-stone-500" onclick="openTab(event, 'Act')">Act</button><button class="tab-button py-3 px-6 font-semibold text-stone-500" onclick="openTab(event, 'Convert')">Convert</button><button class="tab-button py-3 px-6 font-semibold text-stone-500" onclick="openTab(event, 'Engage')">Engage</button></div>
+                <div id="Reach" class="tab-content"><div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"><div><h4 class="text-2xl font-bold text-amber-800">Reach: Building Awareness</h4><p class="text-stone-600 mt-2">Our goal is to maximize visibility where our audience is actively searching for health solutions. This requires a strong focus on organic search (SEO), targeted paid ads, and leveraging credible voices.</p></div><div class="chart-container h-64"><canvas id="reachChart"></canvas></div></div></div>
+                <div id="Act" class="tab-content hidden"><h4 class="text-2xl font-bold text-amber-800 text-center mb-6">Act: Inspiring Interaction</h4><p class="text-stone-600 text-center mb-8 max-w-2xl mx-auto">To deepen interest, we offer high-value content ('bait') in exchange for contact information. These lead magnets address specific user needs, positioning us as a trusted guide.</p><div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center"><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">📘</span><p class="font-semibold text-sm mt-2">eBook: A2 Ghee Guide</p></div><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">🥗</span><p class="font-semibold text-sm mt-2">7-Day Gut Health Plan</p></div><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">📜</span><p class="font-semibold text-sm mt-2">Recipe Collections</p></div><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">❓</span><p class="font-semibold text-sm mt-2">"Find Your Dosha" Quiz</p></div><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">🎓</span><p class="font-semibold text-sm mt-2">Healthy Sweets Mini-Course</p></div><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">🎟️</span><p class="font-semibold text-sm mt-2">Exclusive Welcome Discount</p></div></div></div>
+                <div id="Convert" class="tab-content hidden"><h4 class="text-2xl font-bold text-amber-800 text-center mb-6">Convert: Earning the First Purchase</h4><p class="text-stone-600 text-center mb-8 max-w-2xl mx-auto">At the point of purchase, trust is non-negotiable. Our website and product pages are optimized with clear trust signals to give customers the confidence they need.</p><div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center"><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">✅</span><p class="font-semibold text-sm mt-2">Clear "Buy Now" CTAs</p></div><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">🛡️</span><p class="font-semibold text-sm mt-2">Prominent Certifications</p></div><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">⭐</span><p class="font-semibold text-sm mt-2">Customer Reviews</p></div><div class="bg-amber-50 p-4 rounded-lg"><span class="text-3xl">🔗</span><p class="font-semibold text-sm mt-2">Transparent Sourcing</p></div></div></div>
+                <div id="Engage" class="tab-content hidden"><div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"><div><h4 class="text-2xl font-bold text-amber-800">Engage: Creating Brand Advocates</h4><p class="text-stone-600 mt-2">Our post-purchase strategy focuses on building a loyal community. By fostering a sense of belonging and rewarding loyalty, we turn customers into our most powerful marketing asset.</p></div><div class="chart-container h-64"><canvas id="engageChart"></canvas></div></div></div>
+            </div>
+        </section>
+        
+        <section id="timeline" class="my-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-amber-900">Phased Implementation Plan</h2>
+                <p class="mt-2 text-stone-600 max-w-3xl mx-auto">Our strategy will be rolled out in three distinct phases to ensure a focused and effective execution. Progress and tasks will be tracked on our Jira board.</p>
+            </div>
+            <div class="stat-card max-w-5xl mx-auto p-8">
+                <div class="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="text-center flex-1">
+                        <div class="bg-amber-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 text-2xl font-bold">1</div>
+                        <h4 class="font-bold text-lg text-amber-800">Foundation</h4>
+                        <p class="text-sm text-stone-500">(Months 1-3) Optimize SEO, build core content, launch initial ads, set up analytics.</p>
+                    </div>
+                    <div class="text-center flex-1">
+                        <div class="bg-amber-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 text-2xl font-bold">2</div>
+                        <h4 class="font-bold text-lg text-amber-800">Acceleration</h4>
+                        <p class="text-sm text-stone-500">(Months 4-9) Expand content, launch email nurturing, begin influencer outreach.</p>
+                    </div>
+                    <div class="text-center flex-1">
+                        <div class="bg-amber-800 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3 text-2xl font-bold">3</div>
+                        <h4 class="font-bold text-lg text-amber-800">Advocacy</h4>
+                        <p class="text-sm text-stone-500">(Months 10-18) Launch loyalty programs, build community, formalize partnerships.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="https://yashodhara.atlassian.net/jira/software/c/projects/TD/boards/68" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-900 transition-colors">
+                        Track Our Progress in Jira →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center p-8 bg-amber-900 text-amber-100 mt-16">
+        <p>&copy; 2025 Yashodhara. Bringing Ancient Wisdom to Modern Living.</p>
+    </footer>
+
+    <script>
+        const chartTooltipCallback = (unit = '') => ({
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        },
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) label += ': ';
+                            if (context.parsed.y !== null) label += new Intl.NumberFormat('en-IN').format(context.parsed.y) + ' ' + unit;
+                            return label;
+                        }
+                    }
+                },
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#57534E', callback: function(value) { return value >= 1000 ? value / 1000 + 'k' : value; } },
+                    grid: { color: '#F5F5F4' }
+                },
+                x: { ticks: { color: '#57534E', maxRotation: 0, minRotation: 0 }, grid: { display: false } }
+            },
+            maintainAspectRatio: false, responsive: true,
+        });
+
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            let lines = [], currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += ' ' + word;
+                }
+            }
+            if (currentLine) lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const gheeData = {
+            labels: ['2024', '2033'],
+            datasets: [{ label: 'Market Value', data: [105, 783], backgroundColor: 'rgba(217, 119, 6, 0.1)', borderColor: '#D97706', borderWidth: 3, tension: 0.4, fill: true, pointRadius: 5, pointBackgroundColor: '#D97706' }]
+        };
+        new Chart(document.getElementById('gheeMarketChart'), { type: 'line', data: gheeData, options: chartTooltipCallback('') });
+
+        const jaggeryData = {
+            labels: ['2024', '2033'],
+            datasets: [{ label: 'Market Value', data: [7130, 20260], backgroundColor: 'rgba(146, 64, 14, 0.1)', borderColor: '#92400E', borderWidth: 3, tension: 0.4, fill: true, pointRadius: 5, pointBackgroundColor: '#92400E' }]
+        };
+        new Chart(document.getElementById('jaggeryMarketChart'), { type: 'line', data: jaggeryData, options: chartTooltipCallback('') });
+
+        const reachData = {
+            labels: ['Health Benefits', 'Recipes', 'Authenticity', 'Sourcing'].map(l => wrapLabel(l)),
+            datasets: [{ label: 'Keyword Focus', data: [45, 30, 15, 10], backgroundColor: ['#D97706', '#F59E0B', '#FBBF24', '#FDE68A'], borderRadius: 4 }]
+        };
+        new Chart(document.getElementById('reachChart'), { type: 'bar', data: reachData, options: { ...chartTooltipCallback('%'), indexAxis: 'y' } });
+
+        const engageData = {
+            labels: ['Community Building', 'Influencers', 'Partnerships', 'Loyalty'],
+            datasets: [{ label: 'Strategy Focus', data: [40, 25, 20, 15], backgroundColor: ['#92400E', '#B45309', '#D97706', '#F59E0B'], borderColor: '#fdf6e3', borderWidth: 4, hoverOffset: 8 }]
+        };
+        new Chart(document.getElementById('engageChart'), {
+            type: 'doughnut',
+            data: engageData,
+            options: { ...chartTooltipCallback('%'), plugins: { ...chartTooltipCallback('%').plugins, legend: { position: 'right', labels: { color: '#57534E', font: { family: "'Inter', sans-serif" } } } } }
+        });
+
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
