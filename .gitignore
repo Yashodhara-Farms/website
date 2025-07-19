@@ -1,0 +1,57 @@
+# macOS system files
+.DS_Store
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environments
+venv/
+env/
+*/bin/
+*/lib/
+*/include/
+*/pyvenv.cfg
+
+# VSCode settings
+.vscode/
+
+# Scrapy output files
+*.json
+*.csv
+*.xml
+*.jl
+*.log
+
+# Ignore scrapy-specific .egg files
+.eggs/
+*.egg-info/
+*.egg
+
+# Test results
+.coverage
+htmlcov/
+.tox/
+.nox/
+pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# SQLite/DB files
+*.sqlite
+*.db
+
+# Backup files
+*.bak
+*.tmp
+*.swp
+*~
+
+# Git Ignore for specific folders
+scrapy/yashodhara/lib/
+scrapy/yashodhara/include/
+scrapy/yashodhara/bin/
+scrapy/yashodhara/pyvenv.cfg
+
