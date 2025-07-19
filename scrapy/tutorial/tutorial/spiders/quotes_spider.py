@@ -25,7 +25,6 @@ class QuotesSpider(scrapy.Spider):
         "https://www.anveshan.farm/products/a2-desi-ghee-combo?variant=37347042328768",
         "https://www.anveshan.farm/products/desi-buffalo-ghee",
         "https://www.anveshan.farm/products/wood-pressed-groundnut-oil?variant=30393551323214",
-
     ]
 
     def parse(self, response):
