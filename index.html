@@ -75,22 +75,36 @@
 }
 
   </style>
+<!-- Splide CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+
+<!-- Optional: Theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/themes/splide-default.min.css" />
+
+
+
+
 </head>
 <body class="bg-[#fdf6e3] text-green-900 font-serif p-0">
-  <!-- Include Partials Loader -->
 <script>
-  // Load an HTML partial into a container
   function loadPartial(url, containerId) {
     fetch(url)
       .then(res => res.text())
       .then(data => {
         document.getElementById(containerId).innerHTML = data;
-        const script = document.createElement('script');
-        script.src = './js/hero.js';
-        document.body.appendChild(script);
+
+        // Load scroll.js only once
+        if (!document.querySelector('script[src="./js/scroll.js"]')) {
+          const script = document.createElement('script');
+          script.src = './js/scroll.js';
+          document.body.appendChild(script);
+        }
       });
   }
 </script>
+
+
+
 <!-- ✅ Sticky Header: Yashodhara Organic Farms -->
 <header class="sticky top-0 z-50 bg-[#fdf6e3] shadow-sm text-[#1e392a] font-[Montserrat]">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -147,21 +161,61 @@
 </script>
 
 
- <div id="hero-placeholder"></div>
+<!-- Hero Banner Carousel -->
+<section class="splide" id="hero-carousel" aria-label="Hero Banner">
+  <div class="splide__track">
+    <ul class="splide__list">
+      
+      <!-- Slide 1 -->
+      <li class="splide__slide">
+        <section class="relative w-full bg-[#fdf6e3]">
+        <div class="w-full h-[70vh] overflow-hidden relative">
+          <img src="./img/background-banner-4.png"
+               alt="Farm Banner"
+               class="hidden md:block absolute top-0 left-0 w-full h-full object-contain" />
+        </div>
+        <div class="absolute top-0 left-0 w-full h-[70vh] flex flex-col items-center justify-center z-10 text-center">
+          <img src="./img/logos/typrographical_border.png"
+               alt="Yashodhara Logo"
+               class="w-64 md:w-80 mb-4" />
+        </div>
+      </section>
+      </li>
 
-<script>
-  loadPartial('hero.html', 'hero-placeholder');
-</script>
+      <!-- Slide 2 -->
+      <li class="splide__slide">
+        <picture>
+          <source media="(min-width: 768px)" srcset="./img/hero-banner/banner-background2.png">
+          <img src="./img/hero-banner/banner-background2-mobile.png" 
+               alt="Bilona Ghee Banner" 
+               class="w-full h-[80vh] object-contain" />
+        </picture>
+      </li>
+
+      <!-- Slide 3 -->
+      <li class="splide__slide">
+        <picture>
+          <source media="(min-width: 768px)" srcset="./img/hero-banner/banner-background3.png">
+          <img src="./img/hero-banner/banner-background3-mobile.png" 
+               alt="Nature Banner" 
+               class="w-full h-[80vh] object-contain" />
+        </picture>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
 
 
 <!-- About Us Section -->
-<section id="about-us" class="bg-[#fdf6e3] py-16 px-6 md:px-20 text-center">
+ <section id="about-us" class="bg-[#fdf6e3] py-16 px-6 md:px-20 text-center">
   <h2 class="text-3xl md:text-4xl font-bold text-green-900 mb-6">About Us</h2>
 
   <div class="flex flex-col md:flex-row justify-center items-center gap-6 max-w-4xl mx-auto">
     <!-- Flower -->
     <div class="w-20 md:w-28 flex-shrink-0">
-      <img src="./img/flower-illustration.png" alt="Floral Icon" class="w-full" />
+      <img src="./img/flower-illustration.png" alt="Floral Icon" class="w-full">
     </div>
 
     <!-- Text -->
@@ -173,77 +227,182 @@
   </div>
 </section>
 
-  <!-- Our Products Section -->
-<section id="products" class="bg-[#f3e3c2] py-16 px-4 md:px-12 lg:px-20 products-section">
-  <h2 class="text-3xl md:text-4xl font-bold text-green-900 text-center mb-12">Our Products</h2>
+<!-- Products Section -->
+<section id="products" class="bg-[#f3e3c2] py-16 px-4 md:px-12 lg:px-20 relative">
+  <h2 class="text-3xl md:text-4xl font-bold text-green-900 text-center mb-12">
+    Our Products
+  </h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 products-grid">
-    
-    <!-- Ghee Card -->
-    <div class="bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-      <img src="./img/organic-ghee-jar.png" alt="Organic Ghee" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
-      <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">A2 Bilona Organic Ghee</h3>
-      <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Sacred Gold for Mind, Body & Soul</p>
-      <p class="text-green-800 text-sm mb-3">
-        Hand-churned from indigenous cow milk using the traditional bilona method. Pure and sacred.
-      </p>
-      <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹950 / 500ml</p>
-      <div class="mt-auto flex flex-col gap-2 items-center">
-        <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Ghee"
-           target="_blank"
-           class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
-          📦 Order on WhatsApp
-        </a>
-        <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
-          Know More
-        </button>
-      </div>
+  <div id="products-carousel" class="splide mt-10">
+    <div class="splide__track">
+      <ul class="splide__list">
+        
+        <!-- Slide 1 -->
+        <li class="splide__slide">
+          <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+            <img src="./img/organic-ghee-jar.png" alt="Organic Ghee" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300" />
+            <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center">A2 Bilona Organic Ghee</h3>
+            <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Sacred Gold for Mind, Body & Soul</p>
+            <p class="text-green-800 text-sm mb-3">Hand-churned from indigenous cow milk using the traditional bilona method. Pure and sacred.</p>
+            <p class="text-green-800 text-sm mb-2 font-semibold">₹950 / 500ml</p>
+            <div class="mt-auto flex flex-col gap-2 items-center">
+              <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Ghee"
+                target="_blank"
+                class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center">
+                📦 Order on WhatsApp
+              </a>
+              <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+                Know More
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 2 -->
+        <li class="splide__slide">
+          <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+            <img src="./img/organic-jaggery.png" alt="Organic Jaggery" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Organic Jaggery</h3>
+            <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Wholesome Sweetness from Sugarcane</p>
+            <p class="text-green-800 text-sm mb-3">
+              Sun-dried and chemical-free jaggery full of minerals and nutrients.
+            </p>
+            <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹160 / 500g</p>
+            <div class="mt-auto flex flex-col gap-2 items-center">
+              <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Jaggery"
+                target="_blank"
+                class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+                📦 Order on WhatsApp
+              </a>
+              <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+                Know More
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 3 -->
+        <li class="splide__slide">
+          <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+            <img src="./img/organic-honey.png" alt="Organic Honey" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Organic Honey</h3>
+            <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Nature’s Nectar, Untouched & Unfiltered</p>
+            <p class="text-green-800 text-sm mb-3">
+              Wild-harvested raw honey from Himalayan flora. Unheated. Unfiltered.
+            </p>
+            <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹720 / 500ml</p>
+            <div class="mt-auto flex flex-col gap-2 items-center">
+              <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Honey"
+                target="_blank"
+                class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+                📦 Order on WhatsApp
+              </a>
+              <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+                Know More
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 4 -->
+        <li class="splide__slide">
+          <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+            <img src="./img/organic-honey.png" alt="Jaggery Powder" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Jaggery Powder</h3>
+            <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Golden Sweetness in Every Spoon</p>
+            <p class="text-green-800 text-sm mb-3">
+              Finely powdered jaggery made from pure sugarcane juice — easy to use, rich in minerals, and full of natural sweetness.
+            </p>
+            <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹120 / 500g</p>
+            <div class="mt-auto flex flex-col gap-2 items-center">
+              <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Honey"
+                target="_blank"
+                class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+                📦 Order on WhatsApp
+              </a>
+              <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+                Know More
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 5 -->
+        <li class="splide__slide">
+          <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+            <img src="./img/organic-honey.png" alt="Khandsari Brown" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Khandsari Brown</h3>
+            <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Rustic Sweetness, Naturally Milled</p>
+            <p class="text-green-800 text-sm mb-3">
+              Traditional brown khandsari sugar made from sugarcane juice, minimally processed to retain its natural minerals and earthy flavor.
+            </p>
+            <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹150 / 500g</p>
+            <div class="mt-auto flex flex-col gap-2 items-center">
+              <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Honey"
+                target="_blank"
+                class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+                📦 Order on WhatsApp
+              </a>
+              <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+                Know More
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 6 -->
+        <li class="splide__slide">
+          <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+            <img src="./img/organic-honey.png" alt="Khandsari White" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Khandsari White</h3>
+            <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Classic Cane Sweetness</p>
+            <p class="text-green-800 text-sm mb-3">
+              Pure white khandsari sugar, sun-dried and naturally clarified, offering a gentle sweetness perfect for everyday use.
+            </p>
+            <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹140 / 500g</p>
+            <div class="mt-auto flex flex-col gap-2 items-center">
+              <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Honey"
+                target="_blank"
+                class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+                📦 Order on WhatsApp
+              </a>
+              <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+                Know More
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Slide 7 -->
+        <li class="splide__slide">
+          <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
+            <img src="./img/organic-honey.png" alt="Sugarcane Vinegar" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Sugarcane Vinegar</h3>
+            <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Fermented Goodness for Health & Flavor</p>
+            <p class="text-green-800 text-sm mb-3">
+              Naturally fermented sugarcane vinegar with a mild tang, perfect for gut health and adding zest to your recipes.
+            </p>
+            <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹180 / 500ml</p>
+            <div class="mt-auto flex flex-col gap-2 items-center">
+              <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Honey"
+                target="_blank"
+                class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
+                📦 Order on WhatsApp
+              </a>
+              <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
+                Know More
+              </button>
+            </div>
+          </div>
+        </li>
+
+      </ul>
     </div>
-
-    <!-- Jaggery Card -->
-    <div class="bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-      <img src="./img/organic-jaggery.png" alt="Organic Jaggery" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
-      <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Organic Jaggery</h3>
-      <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Wholesome Sweetness from Sugarcane</p>
-      <p class="text-green-800 text-sm mb-3">
-        Sun-dried and chemical-free jaggery full of minerals and nutrients.
-      </p>
-      <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹160 / 500g</p>
-      <div class="mt-auto flex flex-col gap-2 items-center">
-        <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Jaggery"
-           target="_blank"
-           class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
-          📦 Order on WhatsApp
-        </a>
-        <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
-          Know More
-        </button>
-      </div>
-    </div>
-
-    <!-- Honey Card -->
-    <div class="bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-      <img src="./img/organic-honey.png" alt="Organic Honey" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
-      <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Organic Honey</h3>
-      <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Nature’s Nectar, Untouched & Unfiltered</p>
-      <p class="text-green-800 text-sm mb-3">
-        Wild-harvested raw honey from Himalayan flora. Unheated. Unfiltered.
-      </p>
-      <p class="text-green-800 text-sm mb-2 font-semibold product-price">₹720 / 500ml</p>
-      <div class="mt-auto flex flex-col gap-2 items-center">
-        <a href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Honey"
-           target="_blank"
-           class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 w-full text-center whatsapp-button">
-          📦 Order on WhatsApp
-        </a>
-        <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
-          Know More
-        </button>
-      </div>
-    </div>
-
   </div>
 </section>
+
+
+
 
 
   <!-- Farming Practices Section -->
@@ -355,7 +514,33 @@
 
 
 
+<!-- Splide JS -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
+<script>
+  // Hero Banner
+  new Splide('#hero-carousel', {
+    type: 'loop',
+    autoplay: true,
+    interval: 4000,
+    pauseOnHover: false,
+    arrows: false,
+    pagination: true,
+  }).mount();
+
+  // Product Cards
+  new Splide('#products-carousel', {
+    type: 'slide',
+    perPage: 3,
+    gap: '1rem',
+    arrows: false, 
+    drag: true,
+    breakpoints: {
+      768: { perPage: 1 },
+      1024: { perPage: 2 }
+    }
+  }).mount();
+</script>
 
 </body>
 </html>
