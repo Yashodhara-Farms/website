@@ -3,234 +3,243 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yashodhara Organic Farms</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon/./favicon.svg" />
-  <link rel="shortcut icon" href="/favicon/./favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/./apple-touch-icon.png" />
-  <link rel="manifest" href="/favicon/./site.webmanifest" />
+  <title>Bilona Desi Ghee – Yashodhara Organic Farms</title>
+
+  <!-- Brand fonts & Tailwind to match home page aesthetics -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Splide CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+
   <style>
-    body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #fdf6e3;
-  margin: 0;
-  padding: 2rem;
-}
+    :root { --brand-bg: #fdf6e3; --brand-text: #1e392a; }
+    body { font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    .splide__slide img{ width:100%; height:100%; object-fit:cover; border-radius:12px; }
+    /* Thumbs */
+    #thumbs .splide__slide{ opacity:.6; border-radius:10px; overflow:hidden; }
+    #thumbs .splide__slide.is-active{ opacity:1; outline:2px solid #1e392a; }
+    /* Toggle buttons */
+    .variant-btn{ @apply px-3 py-2 rounded-xl border border-green-900 text-green-900; }
+    .variant-btn.active{ @apply bg-green-900 text-white; }
+    .variant-btn {
+        padding: 6px 12px;
+        border: 1px solid green-900/20;
+        border-radius: 6px;
+        background-color: white;
+        cursor: pointer;
+        font-weight: normal; /* default */
+        transition: all 0.2s;
+    }
 
-.product-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 16px;
-  padding: 1.5rem;
-  max-width: 360px;
-  margin: auto;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.product-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.product-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #1e392a;
-  text-align: center;
-}
-
-.product-details p {
-  margin: 0.5rem 0;
-  color: #3e4c40;
-  text-align: center;
-}
-
-.product-price {
-  font-weight: bold;
-  color: #2e2e2e;
-}
-
-.whatsapp-button {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  background-color: #25D366;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.whatsapp-button:hover {
-  background-color: #1ebe5d;
-}
+    .variant-btn.active {
+        font-weight: bold;
+        border-color: #276749; /* optional: highlight border */
+        background-color: #f0fff4; /* optional: light green bg */
+    }
 
   </style>
-<!-- Splide CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
-
-<!-- Optional: Theme -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/themes/splide-default.min.css" />
-
-
-
-
 </head>
-<body class="bg-[#fdf6e3] text-green-900 font-serif p-0">
-<script>
-  function loadPartial(url, containerId) {
-    fetch(url)
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById(containerId).innerHTML = data;
+<body class="bg-[var(--brand-bg)] text-[var(--brand-text)]">
 
-        // Load scroll.js only once
-        if (!document.querySelector('script[src="./js/scroll.js"]')) {
-          const script = document.createElement('script');
-          script.src = './js/scroll.js';
-          document.body.appendChild(script);
-        }
+  <!-- Minimal header echoing home page logo style -->
+  <header class="sticky top-0 z-40 bg-[var(--brand-bg)]/90 backdrop-blur border-b border-green-900/10">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-center">
+      <div class="text-center leading-tight">
+        <div class="text-2xl md:text-3xl font-extrabold tracking-tight uppercase">YASHODHARA</div>
+        <div class="text-xs md:text-sm font-semibold tracking-[0.15em] uppercase">ORGANIC FARMS<span class="align-super text-[9px]">™</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================= PDP SECTION ========================= -->
+  <section id="pdp-bilona-ghee" aria-label="Bilona Desi Ghee product details"
+           class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
+
+    <!-- Page intro / breadcrumb -->
+    <nav class="text-sm text-green-800/70 mb-4"><a href="/" class="underline hover:no-underline">Home</a> / <span>Bilona Desi Ghee</span></nav>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+      <!-- Gallery -->
+      <div>
+        <div id="main" class="splide" aria-label="Product images">
+          <div class="splide__track">
+            <ul id="main-list" class="splide__list">
+                <img src="../img/organic-ghee-jar.png" alt="">
+            </ul>
+          </div>
+        </div>
+        <div id="thumbs" class="splide mt-4" aria-label="Thumbnails">
+          <div class="splide__track">
+            <ul id="thumb-list" class="splide__list"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="flex flex-col gap-4">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-extrabold">Bilona Desi Ghee</h1>
+          <p class="mt-2 text-green-800/90">Traditionally made from A2 milk obtained from indigenous cows. Rich in Omega‑3, boosts immunity.</p>
+        </div>
+
+        <!-- Variant toggle -->
+        <div class="mt-2">
+          <span class="text-sm uppercase tracking-wider text-green-800/70">Size</span>
+          <div class="mt-2 flex gap-2" id="variant-toggle"></div>
+        </div>
+
+        <!-- Price -->
+        <div class="text-2xl font-bold" id="product-price">₹—</div>
+
+        <!-- Quick facts -->
+        <div class="grid grid-cols-2 gap-3 text-sm bg-white/70 rounded-2xl p-4 border border-green-900/10">
+          <div><span class="font-semibold">Weight:</span> <span id="product-weight">—</span></div>
+          <div><span class="font-semibold">Dimensions:</span> <span id="product-dimensions">—</span></div>
+          <div><span class="font-semibold">Stock:</span> <span id="product-stock">—</span></div>
+          <div><span class="font-semibold">Origin:</span> India</div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          <a id="amazon-link" href="#" target="_blank" rel="nofollow noopener"
+             class="inline-flex items-center justify-center px-5 py-3 rounded text-center bg-[#232f3e] text-white font-semibold shadow hover:opacity-80">Order on Amazon</a>
+          <a id="whatsapp-link" href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Jaggery" 
+            target="_blank" rel="nofollow noopener"
+            class="bg-green-800 inline-flex items-center justify-center px-5 py-3 rounded hover:bg-green-700 text-center text-white ">📦 Order on WhatsApp</a>
+        </div>
+
+        <!-- Badges -->
+        <div class="mt-2 flex flex-wrap gap-2 text-xs">
+          <span class="px-3 py-1 rounded-full bg-green-900/10 border border-green-900/20">A2 Cow Milk</span>
+          <span class="px-3 py-1 rounded-full bg-green-900/10 border border-green-900/20">Bilona Method</span>
+          <span class="px-3 py-1 rounded-full bg-green-900/10 border border-green-900/20">FSSAI Certified</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======================= /PDP SECTION END ====================== -->
+
+  <!-- Splide JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <script>
+    // Variant data — description intentionally static
+    const variants = {
+      "1 Litre": {
+        key: '1l',
+        price: '₹2499',
+        weight: '910g',
+        dimensions: '18×10×10 cm',
+        stock: '12',
+        images: [
+          'link_to_a2ghee_1kg.jpg'
+        ],
+        amazon: 'https://www.amazon.in/dp/EXAMPLE1L',
+        whatsapp: 'https://wa.me/7217062180?text=I%20want%20to%20order%20Bilona%20Desi%20Ghee%20(1L)'
+      },
+      "500 ml": {
+        key: '500ml',
+        price: '₹1299',
+        weight: '405g',
+        dimensions: '12×10×10 cm',
+        stock: '12',
+        images: [
+          'link_to_a2ghee_500ml.jpg'
+        ],
+        amazon: 'https://www.amazon.in/dp/EXAMPLE500',
+        whatsapp: 'https://wa.me/7217062180?text=I%20want%20to%20order%20Bilona%20Desi%20Ghee%20(500ml)'
+      }
+    };
+
+    const toggleWrap = document.getElementById('variant-toggle');
+    const priceEl = document.getElementById('product-price');
+    const weightEl = document.getElementById('product-weight');
+    const dimEl = document.getElementById('product-dimensions');
+    const stockEl = document.getElementById('product-stock');
+    const amazonLink = document.getElementById('amazon-link');
+    const whatsappLink = document.getElementById('whatsapp-link');
+
+    const mainList = document.getElementById('main-list');
+    const thumbList = document.getElementById('thumb-list');
+    let mainSplide, thumbSplide;
+
+    function buildSlides(imgs){
+      mainList.innerHTML = '';
+      thumbList.innerHTML = '';
+      imgs.forEach(src => {
+        const liMain = document.createElement('li');
+        liMain.className = 'splide__slide';
+        liMain.innerHTML = `<img src="${src}" alt="Bilona Desi Ghee">`;
+        mainList.appendChild(liMain);
+
+        const liTh = document.createElement('li');
+        liTh.className = 'splide__slide';
+        liTh.innerHTML = `<img src="${src}" alt="Thumbnail">`;
+        thumbList.appendChild(liTh);
       });
-  }
-</script>
 
+      if (mainSplide) mainSplide.destroy();
+      if (thumbSplide) thumbSplide.destroy();
 
+      thumbSplide = new Splide('#thumbs', {
+        fixedWidth: 96,
+        fixedHeight: 72,
+        gap: 10,
+        pagination: false,
+        isNavigation: true,
+        arrows: false,
+        focus: 'center',
+        rewind: true,
+        breakpoints: { 640: { fixedWidth: 72, fixedHeight: 54 } }
+      });
 
-<!-- ✅ Sticky Header: Yashodhara Organic Farms -->
-<header class="sticky top-0 z-50 bg-[#fdf6e3] shadow-sm text-[#1e392a] font-[Montserrat]">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      mainSplide = new Splide('#main', {
+        type: 'loop',
+        perPage: 1,
+        heightRatio: 0.66,
+        pagination: true,
+        arrows: true,
+      });
 
-    <!-- ☰ Mobile Menu Icon -->
-    <button id="mobile-menu-btn" class="block md:hidden text-2xl focus:outline-none">
-      ☰
-    </button>
+      mainSplide.sync(thumbSplide);
+      thumbSplide.mount();
+      mainSplide.mount();
+    }
 
-    <!-- ✅ Logo Block (center-aligned) -->
-    <div class="flex flex-col items-center leading-none mx-auto md:mx-0">
-      <div class="text-[28px] font-extrabold tracking-tight uppercase">
-        YASHODHARA
-      </div>
-      <div class="text-[14px] font-semibold tracking-[0.1em] uppercase mt-[2px]">
-        ORGANIC FARMS<span class="align-super text-[9px]">™</span>
-      </div>
-    </div>
+    function setVariant(name){
+      const v = variants[name];
+      // UI basics
+      priceEl.textContent = v.price;
+      weightEl.textContent = v.weight;
+      dimEl.textContent = v.dimensions;
+      stockEl.textContent = v.stock;
+      amazonLink.href = v.amazon;
+      whatsappLink.href = v.whatsapp;
+      buildSlides(v.images);
 
-    <!-- Empty Spacer for balance -->
-    <div class="w-[24px] md:hidden"></div>
+      // Toggle active state
+      [...toggleWrap.querySelectorAll('button')].forEach(b => b.classList.remove('active'));
+      const active = toggleWrap.querySelector(`button[data-name="${name}"]`);
+      if (active) active.classList.add('active');
+    }
 
-    <!-- 🖥️ Desktop Nav -->
-    <nav class="hidden md:block">
-      <ul class="flex gap-4 text-lg text-green-800 font-normal">
-        <li><a href="#hero" class="hover:text-green-600 transition">Home</a></li>
-        <li><a href="#about-us" class="hover:text-green-600 transition">About Us</a></li>
-        <li><a href="#products" class="hover:text-green-600 transition">Products</a></li>
-        <li><a href="#farming-practices" class="hover:text-green-600 transition">Practices</a></li>
-        <li><a href="#blog" class="hover:text-green-600 transition">Blog</a></li>
-        <li><a href="#contact" class="hover:text-green-600 transition">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
+    // Render toggle buttons from data
+    Object.keys(variants).forEach(name => {
+      const btn = document.createElement('button');
+      btn.textContent = name;
+      btn.dataset.name = name;
+      btn.className = 'variant-btn';
+      btn.addEventListener('click', () => setVariant(name));
+      toggleWrap.appendChild(btn);
+    });
 
-  <!-- 📱 Mobile Navigation -->
-  <nav id="mobile-nav" class="md:hidden hidden px-4 pb-4 font-normal">
-    <ul class="flex flex-col gap-3 text-lg text-green-800">
-      <li><a href="#hero" class="hover:text-green-600 transition">Home</a></li>
-      <li><a href="#about-us" class="hover:text-green-600 transition">About Us</a></li>
-      <li><a href="#products" class="hover:text-green-600 transition">Products</a></li>
-      <li><a href="#farming-practices" class="hover:text-green-600 transition">Practices</a></li>
-      <li><a href="#blog" class="hover:text-green-600 transition">Blog</a></li>
-      <li><a href="#contact" class="hover:text-green-600 transition">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-
-<!-- Toggle Script -->
-<script>
-  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-    document.getElementById('mobile-nav').classList.toggle('hidden');
-  });
-</script>
-
-
-<!-- Hero Banner Carousel -->
-<section class="splide" id="hero-carousel" aria-label="Hero Banner">
-  <div class="splide__track">
-    <ul class="splide__list">
-      
-      <!-- Slide 1 -->
-      <li class="splide__slide">
-        <section class="relative w-full bg-[#fdf6e3]">
-        <div class="w-full h-[70vh] overflow-hidden relative">
-          <img src="./img/background-banner-4.png"
-               alt="Farm Banner"
-               class="hidden md:block absolute top-0 left-0 w-full h-full object-contain" />
-        </div>
-        <div class="absolute top-0 left-0 w-full h-[70vh] flex flex-col items-center justify-center z-10 text-center">
-          <img src="./img/logos/typrographical_border.png"
-               alt="Yashodhara Logo"
-               class="w-64 md:w-80 mb-4" />
-        </div>
-      </section>
-      </li>
-
-      <!-- Slide 2 -->
-      <li class="splide__slide">
-        <picture>
-          <source media="(min-width: 768px)" srcset="./img/hero-banner/banner-background2.png">
-          <img src="./img/hero-banner/banner-background2-mobile.png" 
-               alt="Bilona Ghee Banner" 
-               class="w-full h-[80vh] object-contain" />
-        </picture>
-      </li>
- 
-      <!-- Slide 3 -->
-      <li class="splide__slide">
-        <picture>
-          <source media="(min-width: 768px)" srcset="./img/hero-banner/banner-background3.png">
-          <img src="./img/hero-banner/banner-background3-mobile.png" 
-               alt="Nature Banner" 
-               class="w-full h-[80vh] object-contain" />
-        </picture>
-      </li>
-
-    </ul>
-  </div>
-</section>
-
-
-
-<!-- About Us Section -->
- <section id="about-us" class="bg-[#fdf6e3] py-16 px-6 md:px-20 text-center">
-  <h2 class="text-3xl md:text-4xl font-bold text-green-900 mb-6">About Us</h2>
-
-  <div class="flex flex-col md:flex-row justify-center items-center gap-6 max-w-4xl mx-auto">
-    <!-- Flower -->
-    <div class="w-20 md:w-28 flex-shrink-0">
-      <img src="./img/flower-illustration.png" alt="Floral Icon" class="w-full">
-    </div>
-
-    <!-- Text -->
-    <p class="text-lg md:text-xl text-green-800 text-left">
-      We are an organic farm rooted in the belief that sacred purity flows from healthy soil.
-      Practicing traditional, cow-based, and chemical-free methods in the foothills of Uttarakhand,
-      our produce is more than food—it’s nourishment for the soul.
-    </p>
-  </div>
-</section>
-
-<!-- Products Section -->
+    // Default variant
+    setVariant('1 Litre');
+  </script>
+<!-- Related Products Section -->
 <section id="products" class="bg-[#f3e3c2] py-16 px-4 md:px-12 lg:px-20 relative">
   <h2 class="text-3xl md:text-4xl font-bold text-green-900 text-center mb-12">
-    Our Products
+    Related Products
   </h2>
 
   <div id="products-carousel" class="splide mt-10">
@@ -240,7 +249,7 @@
         <!-- Slide 1 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-ghee-jar.png" alt="Organic Ghee" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300" />
+            <img src="../img/organic-ghee-jar.png" alt="Organic Ghee" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center">A2 Bilona Organic Ghee</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Sacred Gold for Mind, Body & Soul</p>
             <p class="text-green-800 text-sm mb-3">Hand-churned from indigenous cow milk using the traditional bilona method. Pure and sacred.</p>
@@ -252,7 +261,7 @@
                 📦 Order on WhatsApp
               </a>
               <button class="text-green-800 border border-green-800 px-4 py-2 rounded hover:bg-green-100 w-full">
-                <a href="./pdp/organic-ghee-pdp.html" class="btn">Know More</a>
+                Know More
               </button>
             </div>
           </div>
@@ -261,7 +270,7 @@
         <!-- Slide 2 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-jaggery.png" alt="Organic Jaggery" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <img src="../img/organic-jaggery.png" alt="Organic Jaggery" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Organic Jaggery</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Wholesome Sweetness from Sugarcane</p>
             <p class="text-green-800 text-sm mb-3">
@@ -284,7 +293,7 @@
         <!-- Slide 3 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-honey.png" alt="Swarna Madhu" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <img src="../img/organic-honey.png" alt="Swarna Madhu" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Swarna Madhu</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Nature’s Nectar, Untouched & Unfiltered</p>
             <p class="text-green-800 text-sm mb-3">
@@ -307,7 +316,7 @@
         <!-- Slide 4 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-honey.png" alt="Desi Jaggery Powder" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <img src="../img/organic-honey.png" alt="Desi Jaggery Powder" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Desi Jaggery Powder</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Golden Sweetness in Every Spoon</p>
             <p class="text-green-800 text-sm mb-3">
@@ -330,7 +339,7 @@
         <!-- Slide 5 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-honey.png" alt="Desi Jaggery" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <img src="../img/organic-honey.png" alt="Desi Jaggery" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Desi Jaggery</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Golden Sweetness in Every Spoon</p>
             <p class="text-green-800 text-sm mb-3">
@@ -353,7 +362,7 @@
         <!-- Slide 6 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-honey.png" alt="Khandsari Brown" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <img src="../img/organic-honey.png" alt="Khandsari Brown" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Desi Brown Khandsari</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Rustic Sweetness, Naturally Milled</p>
             <p class="text-green-800 text-sm mb-3">
@@ -376,7 +385,7 @@
         <!-- Slide 7 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-honey.png" alt="Khandsari White" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <img src="../img/organic-honey.png" alt="Khandsari White" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Desi Khandsari</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Classic Cane Sweetness</p>
             <p class="text-green-800 text-sm mb-3">
@@ -399,7 +408,7 @@
         <!-- Slide 8 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-honey.png" alt="Ikshu Sirka" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <img src="../img/organic-honey.png" alt="Ikshu Sirka" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Ikshu Sirka</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Fermented Goodness for Health & Flavor</p>
             <p class="text-green-800 text-sm mb-3">
@@ -422,7 +431,7 @@
         <!-- Slide 9 -->
         <li class="splide__slide">
           <div class="min-w-[280px] max-w-[500px] bg-[#f9eed5] border border-green-800 rounded-xl p-6 shadow-md flex flex-col justify-between">
-            <img src="./img/organic-honey.png" alt="Desi Bura" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
+            <img src="../img/organic-honey.png" alt="Desi Bura" class="w-[280px] mx-auto mb-4 hover:scale-105 transition-transform duration-300 product-image" />
             <h3 class="text-xl sm:text-2xl font-bold text-green-900 text-center product-title">Desi Bura</h3>
             <p class="italic text-green-800 text-center text-sm sm:text-base mb-3">Fermented Goodness for Health & Flavor</p>
             <p class="text-green-800 text-sm mb-3">
@@ -451,67 +460,21 @@
 
 
 
-  <!-- Farming Practices Section -->
-<section id="farming-practices" class="py-16 px-6 md:px-16 bg-[#fdf6e3] text-green-900">
-  <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Our Farming Practices</h2>
-  <div class="max-w-4xl mx-auto text-lg md:text-xl text-green-800 space-y-6">
-    <p>
-      At Yashodhara Organic Farms, our farming philosophy is deeply rooted in traditional wisdom and sustainable methods. We are committed to nurturing the soil and our produce naturally, ensuring chemical-free, nutrient-rich food while protecting the environment and supporting biodiversity.
-    </p>
-    <div class="flex flex-col md:flex-row justify-center items-start gap-12 text-center">
-      <div class="flex-1">
-        <!-- Placeholder image for Organic Farming -->
-        <img src="./img/organic-cultivation.jpg" alt="Organic Farming" class="mx-auto w-64 h-64 mb-4" />
-        <h3 class="text-xl font-semibold mb-2">Organic Cultivation</h3>
-        <p class="text-base">
-          We avoid synthetic chemicals, focusing instead on natural composting, crop rotation, and eco-friendly pest management to cultivate a variety of cereals, pulses, and oilseeds.
-        </p>
-      </div>
-      <div class="flex-1">
-        <!-- Placeholder image for Cow-Based Dairy -->
-        <img src="./img/indigenious-cow.jpg" alt="Cow-Based Dairy" class="mx-auto w-64 h-64 mb-4" />
-        <h3 class="text-xl font-semibold mb-2">Indigenous Cow-Based Dairy</h3>
-        <p class="text-base">
-          Our dairy operations exclusively feature indigenous Indian cow breeds. These resilient cows are nurtured with love, fed organic fodder, and milked ethically.
-        </p>
-      </div>
-      <div class="flex-1">
-        <!-- Placeholder image for Bilona Method -->
-        <img src="./img/bilona-ghee.jpg" alt="Bilona Method" class="mx-auto w-64 h-64 mb-4" />
-        <h3 class="text-xl font-semibold mb-2">Traditional Bilona Ghee</h3>
-        <p class="text-base">
-          Using the traditional Bilona method, we produce pure A2 ghee, known for its rich aroma, immunity-boosting properties, and role in Ayurvedic wellness.
-        </p>
-      </div>
-    </div>
-    <p class="text-center mt-8">
-      By combining these practices, we ensure that every product from Yashodhara Organic Farms is a testament to purity, health, and respect for nature.
-    </p>
-</section>
 
-  <!-- Blog/Newsletter -->
-  <section id="blog" class="py-16 px-6 md:px-16 bg-[#f3efe2] text-center">
-    <h2 class="text-3xl font-bold mb-6">Blog</h2>
-    <div class="flex flex-col gap-4 max-w-xl mx-auto">
-      <input type="text" placeholder="Your email for updates" class="p-3 rounded-md border border-green-800" />
-      <button class="bg-green-800 text-white py-3 rounded-md hover:bg-green-700">Subscribe</button>
-    </div>
-    <p class="mt-4 text-sm">Explore traditional methods, recipes, and wellness tips from the farm.</p>
-  </section>
 
   <!-- Footer -->
   <footer class="relative mt-12 w-full overflow-hidden bg-[#fdf6e3] text-gray-800 dark:text-gray-200">
   <!-- Background Art -->
-  <img src="./img/footer_art.png" alt="Footer Art" class="w-full object-cover" />
+  <img src="../img/footer_art.png" alt="Footer Art" class="w-full object-cover" />
 
   <!-- Overlay Content -->
-  <div class="bg-repeat bg-center bg-[url('./img/footer_bg.png')] relative z-10 max-full mx-0 px-4 py-8 sm:px-6 lg:px-8">
+  <div class="bg-repeat bg-center bg-[url('../img/footer_bg.png')] relative z-10 max-full mx-0 px-4 py-8 sm:px-6 lg:px-8">
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
       <!-- Logo and Contact Info -->
       <div class="flex items-center space-x-4">
-        <img src="./img/logos/yashodahra_firm_logo_transparant_bg.png" alt="Yashodhara Logo" class="h-20 w-auto" />
+        <img src="../img/logos/yashodahra_firm_logo_transparant_bg.png" alt="Yashodhara Logo" class="h-20 w-auto" />
         <div class="text-sm leading-relaxed">
           <p class="font-semibold">Yashodhara Farms Pvt. Ltd.</p>
           <p>Kh. No. 302, Upper Ganga Canal Road</p>
@@ -564,16 +527,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
 <script>
-  // Hero Banner
-  new Splide('#hero-carousel', {
-    type: 'loop',
-    autoplay: true,
-    interval: 4000,
-    pauseOnHover: false,
-    arrows: false,
-    pagination: true,
-  }).mount();
-
   // Product Cards
   new Splide('#products-carousel', {
     type: 'slide',

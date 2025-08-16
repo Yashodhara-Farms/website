@@ -1,0 +1,54 @@
+<!-- ✅ Sticky Header: Yashodhara Organic Farms -->
+<header class="sticky top-0 z-50 bg-[#fdf6e3] shadow-sm text-[#1e392a] font-[Montserrat]">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    <!-- ☰ Mobile Menu Icon -->
+    <button id="mobile-menu-btn" class="block md:hidden text-2xl focus:outline-none">
+      ☰
+    </button>
+
+    <!-- ✅ Logo Block (center-aligned) -->
+    <div class="flex flex-col items-center leading-none mx-auto md:mx-0">
+      <div class="text-[28px] font-extrabold tracking-tight uppercase">
+        YASHODHARA
+      </div>
+      <div class="text-[14px] font-semibold tracking-[0.1em] uppercase mt-[2px]">
+        ORGANIC FARMS<span class="align-super text-[9px]">™</span>
+      </div>
+    </div>
+
+    <!-- Empty Spacer for balance -->
+    <div class="w-[24px] md:hidden"></div>
+
+    <!-- 🖥️ Desktop Nav -->
+    <nav class="hidden md:block">
+      <ul class="flex gap-4 text-lg text-green-800 font-normal">
+        <li><a href="#hero" class="hover:text-green-600 transition">Home</a></li>
+        <li><a href="#about-us" class="hover:text-green-600 transition">About Us</a></li>
+        <li><a href="#products" class="hover:text-green-600 transition">Products</a></li>
+        <li><a href="#farming-practices" class="hover:text-green-600 transition">Practices</a></li>
+        <li><a href="#blog" class="hover:text-green-600 transition">Blog</a></li>
+        <li><a href="#contact" class="hover:text-green-600 transition">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- 📱 Mobile Navigation -->
+  <nav id="mobile-nav" class="md:hidden hidden px-4 pb-4 font-normal">
+    <ul class="flex flex-col gap-3 text-lg text-green-800">
+      <li><a href="#hero" class="hover:text-green-600 transition">Home</a></li>
+      <li><a href="#about-us" class="hover:text-green-600 transition">About Us</a></li>
+      <li><a href="#products" class="hover:text-green-600 transition">Products</a></li>
+      <li><a href="#farming-practices" class="hover:text-green-600 transition">Practices</a></li>
+      <li><a href="#blog" class="hover:text-green-600 transition">Blog</a></li>
+      <li><a href="#contact" class="hover:text-green-600 transition">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Toggle Script -->
+<script>
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-nav').classList.toggle('hidden');
+  });
+</script>
