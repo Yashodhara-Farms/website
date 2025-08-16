@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yashodhara Organic Farms – Upcoming Ghee Batches</title>
+  <style>
+    /*
+      Yashodhara Organic Farms – Batch Calendar Mockup
+      -------------------------------------------------
+      Single-file prototype (HTML/CSS/JS):
+      - Toggle Upcoming / Past
+      - Card layout with progress, details, and pre-book modal
+      - Mobile-first, accessible, and easy to integrate
+
+      Integration notes:
+      1) Replace the "batches" array in <script> with your live data.
+      2) Wire up submitPreBook() to your backend endpoint.
+      3) Optional: surface real-time booking numbers via polling/websockets.
+    */
+
+    :root{
+      --bg: #fcf8ee;           /* warm cream */
+      --card: #ffffff;          /* white cards */
+      --ink: #1f2a24;           /* deep green-black text */
+      --muted: #47554e;         /* muted green */
+      --brand: #1e392a;         /* forest green */
+      --brand-2: #9f7a12;       /* ghee gold accent */
+      --accent: #e4b02a;        /* progress highlight */
+      --border: #e9e3d3;        /* soft border */
+      --success: #2f7a41;
+      --danger: #8b1e1e;
+      --shadow: 0 10px 20px rgba(30,57,42,0.08);
+      --radius-xl: 20px;
+      --radius-2xl: 26px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink); background: var(--bg);
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+
+    .wrap{
+      max-width: 1100px; margin: 0 auto; padding: 24px; 
+    }
+
+    .hero{
+      position: relative; overflow: hidden; border-radius: var(--radius-2xl);
+      background:
+        radial-gradient(1200px 400px at -10% -40%, rgba(159,122,18,0.08), transparent),
+        radial-gradient(900px 500px at 120% -30%, rgba(30,57,42,0.10), transparent),
+        linear-gradient(180deg, #fffbe9, #fff);
+      padding: 28px 24px; box-shadow: var(--shadow); border: 1px solid var(--border);
+    }
+
+    .hero h1{ margin: 0 0 6px; font-size: clamp(22px, 3.6vw, 34px); letter-spacing: -0.02em; }
+    .hero p{ margin: 0; color: var(--muted); font-size: clamp(14px, 2.5vw, 16px); }
+
+    .toolbar{
+      margin: 18px 0 8px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+    }
+
+    .segmented{
+      background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 4px; display: inline-flex; box-shadow: var(--shadow);
+    }
+    .segmented button{
+      appearance: none; border:0; background: transparent; padding: 8px 14px; border-radius: 999px; cursor: pointer; font-weight: 600; color: var(--muted);
+    }
+    .segmented button.active{
+      background: var(--brand); color: #fff;
+    }
+
+    .searchbar{
+      display: flex; gap: 8px; align-items: center; flex: 1 1 260px; max-width: 420px;
+      background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 8px 12px; box-shadow: var(--shadow);
+    }
+    .searchbar input{
+      border:0; outline:0; flex:1; background: transparent; font-size: 14px;
+    }
+
+    .grid{
+      display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 14px;
+    }
+    @media (min-width: 680px){ .grid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 980px){ .grid{ grid-template-columns: repeat(3, 1fr); } }
+
+    .card{
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 16px; box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 12px; position: relative; overflow: hidden;
+    }
+    .badge{
+      position: absolute; top: 14px; right: 14px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      background: #fff7e1; color: #664d00; border: 1px solid #f3e3aa; padding: 6px 10px; border-radius: 999px;
+    }
+
+    .title{ font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+    .meta{ font-size: 13px; color: var(--muted); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    .progress{
+      height: 10px; background: #f4efe0; border-radius: 999px; overflow: hidden; border: 1px solid var(--border);
+    }
+    .progress > span{
+      display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #ffd970);
+      width: 0%; transition: width .5s ease;
+    }
+
+    .row{ display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .stat{ font-weight: 700; }
+
+    .actions{ display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn{
+      appearance: none; border: 1px solid var(--brand); background: var(--brand); color:#fff; padding: 10px 14px; border-radius: 14px; cursor: pointer; font-weight: 700;
+      transition: transform .04s ease, box-shadow .2s ease; box-shadow: 0 5px 12px rgba(30,57,42,.18);
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn.outline{ background: transparent; color: var(--brand); }
+    .btn.ghost{ border-color: #d4c79b; color: #8a7a4a; background: #fffaf1; }
+    .soldout{ background: #fff1f1; color: #7c2d2d; border-color: #efcaca; }
+
+    details{ border-top: 1px dashed var(--border); padding-top: 8px; }
+    details summary{ cursor: pointer; font-weight: 700; color: var(--brand); }
+
+    /* Modal */
+    .modal-backdrop{ position: fixed; inset: 0; background: rgba(0,0,0,.35); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 50; }
+    .modal{ width: 100%; max-width: 520px; background: #fff; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 25px 60px rgba(0,0,0,.25); overflow: hidden; }
+    .modal header{ padding: 16px 18px; background: linear-gradient(180deg,#fffbe9,#fff); border-bottom: 1px solid var(--border); }
+    .modal header h3{ margin: 0; font-size: 18px; }
+    .modal .content{ padding: 16px 18px; display: grid; gap: 10px; }
+    .modal label{ font-size: 14px; color: var(--muted); }
+    .modal input, .modal select{
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: #fffaf3;
+    }
+    .modal .footer{ display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; background: #fffdf6; border-top: 1px solid var(--border); }
+
+    .notice{ font-size: 12px; color: var(--muted); }
+    .pill{
+      display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px;
+      background: #fff; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero" role="region" aria-label="Upcoming ghee batches">
+      <h1>Upcoming Ghee Batches</h1>
+      <p>Fresh, small-batch, farm-made ghee. Know when the next jar is ready. 100% transparent.</p>
+
+      <div class="toolbar">
+        <div class="segmented" role="tablist" aria-label="Batch view selector">
+          <button class="active" role="tab" aria-selected="true" id="tab-upcoming" onclick="switchView('upcoming', this)">Upcoming</button>
+          <button role="tab" aria-selected="false" id="tab-past" onclick="switchView('past', this)">Past</button>
+        </div>
+        <div class="searchbar" role="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4a6 6 0 104.472 10.028l4.25 4.25 1.414-1.414-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z" fill="currentColor"/></svg>
+          <input id="search" placeholder="Search by batch name or note…" oninput="render()" aria-label="Search" />
+        </div>
+        <span class="pill" id="todayPill">Today: <span id="today"></span></span>
+      </div>
+    </section>
+
+    <div class="grid" id="grid" aria-live="polite"></div>
+  </div>
+
+  <!-- Pre-Book Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <header>
+        <h3 id="modalTitle">Reserve Your Jar</h3>
+      </header>
+      <div class="content">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your full name" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" />
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div>
+            <label for="qty">Quantity (jars)</label>
+            <select id="qty"></select>
+          </div>
+          <div>
+            <label for="size">Jar Size</label>
+            <select id="size">
+              <option value="500">500 ml</option>
+              <option value="1000">1 L</option>
+            </select>
+          </div>
+        </div>
+        <p class="notice">No payment in this demo. On your live site, connect to your checkout to confirm reservations.</p>
+      </div>
+      <div class="footer">
+        <button class="btn outline" onclick="closeModal()">Cancel</button>
+        <button class="btn" onclick="submitPreBook()">Confirm Pre-Booking</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ----- Demo Data (replace with live backend) -----
+    const batches = [
+      {
+        id: 24,
+        name: "Full Moon Batch",
+        date: "2025-09-05",
+        totalJars: 150,
+        preBooked: 72,
+        jarSizeMl: 500,
+        story: "Milk sourced from 14 Gir cows grazing on monsoon pasture block A.",
+        deliveryWindow: "2025-09-10 to 2025-09-12",
+        tags: ["Grass-fed", "Bilona"]
+      },
+      {
+        id: 25,
+        name: "Shravan Finale",
+        date: "2025-09-20",
+        totalJars: 120,
+        preBooked: 18,
+        jarSizeMl: 500,
+        story: "Late-monsoon herbs visible in the pasture, richer aroma expected.",
+        deliveryWindow: "2025-09-24 to 2025-09-26",
+        tags: ["Small-batch", "A2"]
+      },
+      {
+        id: 26,
+        name: "Navratri Start",
+        date: "2025-10-03",
+        totalJars: 200,
+        preBooked: 0,
+        jarSizeMl: 500,
+        story: "Festive season batch with clarified churning schedule for purity.",
+        deliveryWindow: "2025-10-07 to 2025-10-10",
+        tags: ["Festive", "Bilona"]
+      },
+      // Past examples
+      {
+        id: 23,
+        name: "Monsoon Gold",
+        date: "2025-08-05",
+        totalJars: 140,
+        preBooked: 140,
+        jarSizeMl: 500,
+        story: "Sold out quickly due to limited grass cycle.",
+        deliveryWindow: "2025-08-08 to 2025-08-10",
+        tags: ["Sold-out", "Monsoon"]
+      },
+      {
+        id: 22,
+        name: "Green Pastures",
+        date: "2025-07-20",
+        totalJars: 100,
+        preBooked: 100,
+        jarSizeMl: 500,
+        story: "Peak rains – high beta-carotene aroma.",
+        deliveryWindow: "2025-07-24 to 2025-07-26",
+        tags: ["A2", "Grass-fed"]
+      }
+    ];
+
+    let currentView = 'upcoming';
+    let activeBatch = null; // for modal context
+
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+    function switchView(view, el){
+      currentView = view;
+      $$(".segmented button").forEach(b=>{
+        b.classList.toggle('active', b===el);
+        b.setAttribute('aria-selected', b===el ? 'true' : 'false');
+      })
+      render();
+    }
+
+    function fmtDate(iso){
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric', weekday:'short' });
+    }
+
+    function todayStr(){
+      const now = new Date();
+      return now.toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+    }
+
+    function computePct(preBooked, total){
+      const pct = Math.max(0, Math.min(100, Math.round((preBooked/total)*100)));
+      return pct;
+    }
+
+    function isPast(iso){
+      const today = new Date();
+      const d = new Date(iso + 'T00:00:00');
+      return d < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    }
+
+    function render(){
+      $('#today').textContent = todayStr();
+      const grid = $('#grid');
+      grid.innerHTML = '';
+
+      const q = $('#search').value.trim().toLowerCase();
+
+      const items = batches
+        .filter(b => currentView === 'past' ? isPast(b.date) : !isPast(b.date))
+        .filter(b => !q || b.name.toLowerCase().includes(q) || (b.story && b.story.toLowerCase().includes(q)));
+
+      if(items.length === 0){
+        grid.innerHTML = `<div class="card" role="status">No ${currentView} batches match your search.</div>`;
+        return;
+      }
+
+      items
+        .sort((a,b)=> new Date(a.date) - new Date(b.date))
+        .forEach(b => grid.appendChild(renderCard(b)));
+    }
+
+    function renderCard(b){
+      const pct = computePct(b.preBooked, b.totalJars);
+      const remaining = Math.max(0, b.totalJars - b.preBooked);
+      const soldOut = remaining === 0;
+
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.setAttribute('aria-label', `Batch ${b.id}: ${b.name}`);
+
+      const badge = document.createElement('div');
+      badge.className = 'badge';
+      badge.textContent = isPast(b.date) ? 'Past' : (soldOut ? 'Sold Out' : 'Pre-booking');
+      card.appendChild(badge);
+
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.textContent = `Batch #${b.id} – ${b.name}`;
+      card.appendChild(title);
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      meta.innerHTML = `
+        <div><strong>Date:</strong> ${fmtDate(b.date)}</div>
+        <div><strong>Jar size:</strong> ${b.jarSizeMl} ml</div>
+        <div><strong>Total:</strong> ${b.totalJars} jars</div>
+        <div><strong>Pre-booked:</strong> ${b.preBooked} jars</div>
+      `;
+      card.appendChild(meta);
+
+      const progress = document.createElement('div');
+      progress.className = 'progress';
+      progress.innerHTML = `<span style="width:${pct}%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}" role="progressbar"></span>`;
+      card.appendChild(progress);
+
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML = `<div class="stat">${remaining} ${remaining===1?'jar':'jars'} left</div>`;
+
+      const actions = document.createElement('div'); actions.className = 'actions';
+
+      const details = document.createElement('button');
+      details.className = 'btn ghost';
+      details.textContent = 'Details';
+      details.onclick = () => toggleDetails(card, b);
+      actions.appendChild(details);
+
+      const cta = document.createElement('button');
+      cta.className = 'btn' + (soldOut ? ' soldout' : '');
+      cta.textContent = soldOut ? 'Sold Out' : 'Pre-Book Now';
+      cta.disabled = soldOut || isPast(b.date);
+      cta.setAttribute('aria-disabled', cta.disabled ? 'true' : 'false');
+      if(!cta.disabled){ cta.onclick = () => openModal(b, remaining); }
+      actions.appendChild(cta);
+
+      row.appendChild(actions);
+      card.appendChild(row);
+
+      // Hidden details
+      const det = document.createElement('details');
+      const sum = document.createElement('summary'); sum.textContent = 'Batch Story & Delivery';
+      const body = document.createElement('div');
+      body.style.marginTop = '8px';
+      const tags = (b.tags||[]).map(t=>`<span class="pill">${t}</span>`).join(' ');
+      body.innerHTML = `
+        <p style="margin:0 0 6px; color:var(--muted)">${b.story||''}</p>
+        <p style="margin:0 0 6px;"><strong>Est. Delivery:</strong> ${b.deliveryWindow}</p>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">${tags}</div>
+      `;
+      det.appendChild(sum); det.appendChild(body);
+      card.appendChild(det);
+
+      return card;
+    }
+
+    function toggleDetails(card){
+      // Expand the <details> element programmatically (optional UX sugar)
+      const d = card.querySelector('details');
+      d.open = !d.open;
+    }
+
+    // ----- Modal logic -----
+    function openModal(batch, remaining){
+      activeBatch = { ...batch, remaining };
+      $('#modalTitle').textContent = `Reserve – Batch #${batch.id} (${batch.name})`;
+      const qty = $('#qty'); qty.innerHTML='';
+      const max = Math.min(6, remaining); // limit per customer for fairness
+      for(let i=1;i<=max;i++){
+        const opt = document.createElement('option');
+        opt.value = i; opt.textContent = i;
+        qty.appendChild(opt);
+      }
+      $('#modalBackdrop').style.display = 'flex';
+      $('#modalBackdrop').setAttribute('aria-hidden','false');
+    }
+
+    function closeModal(){
+      $('#modalBackdrop').style.display = 'none';
+      $('#modalBackdrop').setAttribute('aria-hidden','true');
+      activeBatch = null;
+    }
+
+    function submitPreBook(){
+      const name = $('#name').value.trim();
+      const email = $('#email').value.trim();
+      const qty = parseInt($('#qty').value || '0', 10);
+      const size = $('#size').value;
+
+      if(!name || !email || !qty){
+        alert('Please complete all fields.');
+        return;
+      }
+
+      // In production, POST this payload to your API
+      const payload = { batchId: activeBatch.id, name, email, qty, size };
+      console.log('Pre-book payload:', payload);
+
+      // Demo: Show confirmation
+      alert(`Thanks, ${name}! Your pre-booking for ${qty} jar(s) in Batch #${activeBatch.id} is noted.`);
+      closeModal();
+    }
+
+    // Init
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+    $('#today').textContent = todayStr();
+    render();
+  </script>
+</body>
+</html>

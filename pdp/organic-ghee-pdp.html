@@ -236,6 +236,74 @@
     // Default variant
     setVariant('1 Litre');
   </script>
+
+
+<section id="upcoming-batches" class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 yashodhara-batch-calendar">
+  <style>
+    /* Scoped styles for PDP integration */
+    #upcoming-batches{
+      margin-top: 40px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu;
+    }
+    #upcoming-batches .hero{background:linear-gradient(180deg,#fffbe9,#fff); border:1px solid #e9e3d3; border-radius:20px; padding:20px;}
+    #upcoming-batches .hero h2{margin:0 0 8px; font-size:24px; color:#1e392a;}
+    #upcoming-batches .hero p{margin:0; font-size:14px; color:#47554e;}
+    #upcoming-batches .grid{display:grid; gap:16px; margin-top:16px; grid-template-columns:repeat(auto-fill,minmax(250px,1fr));}
+    #upcoming-batches .card{background:#fff; border:1px solid #e9e3d3; border-radius:16px; padding:16px; box-shadow:0 8px 16px rgba(30,57,42,0.08); display:flex; flex-direction:column; gap:8px;}
+    #upcoming-batches .card .title{font-weight:700; font-size:16px; color:#1f2a24;}
+    #upcoming-batches .meta{font-size:13px; color:#47554e;}
+    #upcoming-batches .progress{height:8px; background:#f4efe0; border-radius:8px; overflow:hidden;}
+    #upcoming-batches .progress span{display:block; height:100%; background:linear-gradient(90deg,#e4b02a,#ffd970);} 
+    #upcoming-batches .btn{background:#1e392a; color:#fff; border:none; padding:8px 12px; border-radius:12px; cursor:pointer; font-size:14px;}
+    #upcoming-batches .btn.soldout{background:#ccc; cursor:not-allowed;}
+  </style>
+
+  <div class="hero">
+    <h2>Upcoming Ghee Batches</h2>
+    <p>Reserve fresh, small-batch ghee directly from Yashodhara Organic Farms.</p>
+
+    <div class="grid" id="pdpBatchGrid"></div>
+  </div>
+
+  <script>
+    const pdpBatches = [
+      {id:24,name:"Full Moon Batch",date:"2025-09-05",totalJars:150,preBooked:72,jarSizeMl:500},
+      {id:25,name:"Shravan Finale",date:"2025-09-20",totalJars:120,preBooked:18,jarSizeMl:500},
+      {id:26,name:"Navratri Start",date:"2025-10-03",totalJars:200,preBooked:0,jarSizeMl:500}
+    ];
+
+    const pdpGrid = document.getElementById('pdpBatchGrid');
+    function pct(booked,total){return Math.round((booked/total)*100);} 
+
+    function addToCart(batch){
+      // Example: adapt to your ecommerce cart system
+      // Replace this console.log with actual cart API integration
+      console.log("Adding to cart:", batch);
+      alert(`Batch #${batch.id} – ${batch.name} (${batch.jarSizeMl}ml) added to your cart.`);
+    }
+
+    pdpBatches.forEach(b=>{
+      const remaining = b.totalJars - b.preBooked;
+      const soldOut = remaining<=0;
+      const card = document.createElement('div');
+      card.className='card';
+      card.innerHTML=`
+        <div class="title">Batch #${b.id} – ${b.name}</div>
+        <div class="meta">Date: ${new Date(b.date).toLocaleDateString()} | Jar: ${b.jarSizeMl}ml</div>
+        <div class="progress"><span style="width:${pct(b.preBooked,b.totalJars)}%"></span></div>
+        <div class="meta">${remaining} jars left</div>
+        <button class="btn ${soldOut? 'soldout':''}" ${soldOut? 'disabled':''}>${soldOut? 'Sold Out':'Pre-Book'}</button>
+      `;
+      const btn = card.querySelector('button');
+      if(!soldOut){
+        btn.addEventListener('click', ()=> addToCart(b));
+      }
+      pdpGrid.appendChild(card);
+    });
+  </script>
+</section>
+
+
+
 <!-- Related Products Section -->
 <section id="products" class="bg-[#f3e3c2] py-16 px-4 md:px-12 lg:px-20 relative">
   <h2 class="text-3xl md:text-4xl font-bold text-green-900 text-center mb-12">
