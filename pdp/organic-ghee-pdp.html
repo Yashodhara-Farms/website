@@ -11,6 +11,10 @@
 
   <!-- Splide CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+
 
   <style>
     :root { --brand-bg: #fdf6e3; --brand-text: #1e392a; }
@@ -37,6 +41,36 @@
         border-color: #276749; /* optional: highlight border */
         background-color: #f0fff4; /* optional: light green bg */
     }
+    /* Main slider images */
+#main .splide__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* makes sure the whole image fits inside */
+  border-radius: 12px;   /* optional: rounded corners */
+}
+
+/* Thumbnail slider images */
+#thumbs .splide__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* fills the thumbnail without distortion */
+  border-radius: 8px;    /* optional */
+}
+
+
+@media (min-width: 768px) {
+  .splide__slide {
+    overflow: hidden;
+  }
+  .splide__slide img {
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+  }
+  .splide__slide img:hover {
+    transform: scale(1.6);
+  }
+}
+
 
   </style>
 </head>
@@ -80,7 +114,7 @@
       <div class="flex flex-col gap-4">
         <div>
           <h1 class="text-3xl md:text-4xl font-extrabold">Bilona Desi Ghee</h1>
-          <p class="mt-2 text-green-800/90">Traditionally made from A2 milk obtained from indigenous cows. Rich in Omega‑3, boosts immunity.</p>
+          <p class="mt-2 text-green-800/90">Our Ghee is crafted using the Traditional Vedic Bilona method from organic, grass-fed indigenous cow A-2 milk. The milk is churned into butter and slow-cooked to yield a golden, aromatic ghee rich in beta-carotene, vitamins and omega fatty acids. This pure ghee promotes digestion, immunity and joint health while being free from chemicals and adulterants.</p>
         </div>
 
         <!-- Variant toggle -->
@@ -102,8 +136,8 @@
 
         <!-- Actions -->
         <div class="flex flex-col sm:flex-row gap-3 pt-2">
-          <a id="amazon-link" href="#" target="_blank" rel="nofollow noopener"
-             class="inline-flex items-center justify-center px-5 py-3 rounded text-center bg-[#232f3e] text-white font-semibold shadow hover:opacity-80">Order on Amazon</a>
+          <!-- <a id="amazon-link" href="#" target="_blank" rel="nofollow noopener"
+             class="inline-flex items-center justify-center px-5 py-3 rounded text-center bg-[#232f3e] text-white font-semibold shadow hover:opacity-80">Order on Amazon</a> -->
           <a id="whatsapp-link" href="https://wa.me/7217062180?text=Hi%2C%20I'm%20interested%20in%20your%20Organic%20Jaggery" 
             target="_blank" rel="nofollow noopener"
             class="bg-green-800 inline-flex items-center justify-center px-5 py-3 rounded hover:bg-green-700 text-center text-white ">📦 Order on WhatsApp</a>
@@ -132,7 +166,8 @@
         dimensions: '18×10×10 cm',
         stock: '12',
         images: [
-          'link_to_a2ghee_1kg.jpg'
+          '../img/products/ghee-1ltr-front.jpeg',
+          '../img/products/ghee-1ltr-back.jpeg',
         ],
         amazon: 'https://www.amazon.in/dp/EXAMPLE1L',
         whatsapp: 'https://wa.me/7217062180?text=I%20want%20to%20order%20Bilona%20Desi%20Ghee%20(1L)'
@@ -144,7 +179,9 @@
         dimensions: '12×10×10 cm',
         stock: '12',
         images: [
-          'link_to_a2ghee_500ml.jpg'
+          '../img/products/ghee-500ml-front.jpeg',
+          '../img/products/ghee-500ml-side.jpeg',
+          '../img/products/ghee-500ml-back.jpeg',
         ],
         amazon: 'https://www.amazon.in/dp/EXAMPLE500',
         whatsapp: 'https://wa.me/7217062180?text=I%20want%20to%20order%20Bilona%20Desi%20Ghee%20(500ml)'
@@ -164,47 +201,63 @@
     let mainSplide, thumbSplide;
 
     function buildSlides(imgs){
-      mainList.innerHTML = '';
-      thumbList.innerHTML = '';
-      imgs.forEach(src => {
-        const liMain = document.createElement('li');
-        liMain.className = 'splide__slide';
-        liMain.innerHTML = `<img src="${src}" alt="Bilona Desi Ghee">`;
-        mainList.appendChild(liMain);
+        mainList.innerHTML = '';
+        thumbList.innerHTML = '';
 
-        const liTh = document.createElement('li');
-        liTh.className = 'splide__slide';
-        liTh.innerHTML = `<img src="${src}" alt="Thumbnail">`;
-        thumbList.appendChild(liTh);
-      });
+        imgs.forEach(src => {
+            // Main slides with GLightbox link
+            const liMain = document.createElement('li');
+            liMain.className = 'splide__slide';
+            liMain.innerHTML = `
+            <a href="${src}" class="glightbox" data-gallery="product-gallery">
+                <img src="${src}" alt="Bilona Desi Ghee">
+            </a>`;
+            mainList.appendChild(liMain);
 
-      if (mainSplide) mainSplide.destroy();
-      if (thumbSplide) thumbSplide.destroy();
+            // Thumbnails
+            const liTh = document.createElement('li');
+            liTh.className = 'splide__slide';
+            liTh.innerHTML = `<img src="${src}" alt="Thumbnail">`;
+            thumbList.appendChild(liTh);
+        });
 
-      thumbSplide = new Splide('#thumbs', {
-        fixedWidth: 96,
-        fixedHeight: 72,
-        gap: 10,
-        pagination: false,
-        isNavigation: true,
-        arrows: false,
-        focus: 'center',
-        rewind: true,
-        breakpoints: { 640: { fixedWidth: 72, fixedHeight: 54 } }
-      });
+        if (mainSplide) mainSplide.destroy();
+        if (thumbSplide) thumbSplide.destroy();
 
-      mainSplide = new Splide('#main', {
-        type: 'loop',
-        perPage: 1,
-        heightRatio: 0.66,
-        pagination: true,
-        arrows: true,
-      });
+        thumbSplide = new Splide('#thumbs', {
+            fixedWidth: 96,
+            fixedHeight: 72,
+            gap: 10,
+            pagination: false,
+            isNavigation: true,
+            arrows: false,
+            focus: 'center',
+            rewind: true,
+            breakpoints: { 640: { fixedWidth: 72, fixedHeight: 54 } }
+        });
 
-      mainSplide.sync(thumbSplide);
-      thumbSplide.mount();
-      mainSplide.mount();
+        mainSplide = new Splide('#main', {
+            type: 'loop',
+            perPage: 1,
+            heightRatio: 0.66,
+            pagination: true,
+            arrows: true,
+        });
+
+        mainSplide.sync(thumbSplide);
+        mainSplide.mount();
+        thumbSplide.mount();
+
+        // Initialize GLightbox (after slides render)
+        const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: true,
+        });
     }
+
+
 
     function setVariant(name){
       const v = variants[name];
@@ -213,7 +266,7 @@
       weightEl.textContent = v.weight;
       dimEl.textContent = v.dimensions;
       stockEl.textContent = v.stock;
-      amazonLink.href = v.amazon;
+      //amazonLink.href = v.amazon;
       whatsappLink.href = v.whatsapp;
       buildSlides(v.images);
 
@@ -238,7 +291,7 @@
   </script>
 
 
-<section id="upcoming-batches" class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 yashodhara-batch-calendar">
+<!-- <section id="upcoming-batches" class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 yashodhara-batch-calendar">
   <style>
     /* Scoped styles for PDP integration */
     #upcoming-batches{
@@ -300,7 +353,7 @@
       pdpGrid.appendChild(card);
     });
   </script>
-</section>
+</section> -->
 
 
 
